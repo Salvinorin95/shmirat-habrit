@@ -4,8 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>שמירת הברית · להיות אדון לעצמך</title>
-<meta name="description" content="תוכנית מעשית וחיובית לשמירת הברית: הבנת הדחף, הגנה טכנית, שגרה, פרוטוקול חירום, מעקב רצף. הכל נשמר רק במכשיר שלך.">
+<meta name="description" content="תוכנית מעשית וחיובית לשמירת הברית, עם מעקב רצף, תובנות פרטיות ומצב חירום. A practical, positive self-mastery plan with streak tracking and an emergency mode. All data stays on your device.">
 <meta name="theme-color" content="#1fb5a6">
+<meta property="og:title" content="שמירת הברית · Guarding the Covenant">
+<meta property="og:description" content="תוכנית מעשית לשליטה עצמית ואפליקציה פרטית שעובדת אופליין. A private, offline self-mastery app.">
+<meta property="og:image" content="https://salvinorin95.github.io/shmirat-habrit/docs/social-preview.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
 <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
@@ -16,31 +21,34 @@
 <link rel="preload" as="image" href="assets/img/hero-portrait.webp" media="(max-width: 700px)">
 <link rel="preload" as="image" href="assets/img/hero-1920.webp" media="(min-width: 701px)">
 <link rel="stylesheet" href="css/app.css">
+<script>/* pick language before first paint (no flash) */
+(function(){try{var s=JSON.parse(localStorage.getItem("shmira-v1")||"{}"),l=s.lang;if(!l){var n=((navigator.languages&&navigator.languages[0])||navigator.language||"he").toLowerCase();l=(n.indexOf("he")===0||n.indexOf("iw")===0)?"he":"en";}if(l==="en"){var d=document.documentElement;d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 </head>
 <body>
-<a class="skip" href="#main">דלג לתוכן</a>
+<a class="skip" href="#main" data-i18n="skip">דלג לתוכן</a>
 
 <header class="topbar" role="banner">
-  <button class="icon-btn" id="menu-btn" aria-label="פתח ניווט פרקים" aria-controls="drawer" aria-expanded="false">
+  <button class="icon-btn" id="menu-btn" data-i18n-aria="menu_open" aria-label="פתח ניווט פרקים" aria-controls="drawer" aria-expanded="false">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
   </button>
-  <a class="brand" href="#top"><span class="ember">שמירת הברית</span></a>
+  <a class="brand" href="#top"><span class="ember" data-i18n="brand">שמירת הברית</span></a>
   <div class="top-actions">
-    <span class="streak-pill" id="streak-pill" title="הרצף הנוכחי"><span aria-hidden="true">🔥</span> <b id="streak-mini">0</b> <span>ימים</span></span>
-    <button class="icon-btn" id="theme-btn" aria-label="החלף מצב תאורה">
+    <span class="streak-pill" id="streak-pill" data-i18n-title="streak_now" title="הרצף הנוכחי"><span aria-hidden="true">🔥</span> <b id="streak-mini">0</b> <span data-i18n="days">ימים</span></span>
+    <button class="icon-btn lang-btn" id="lang-btn" data-i18n-aria="lang_switch" aria-label="Switch to English" lang="en"><span id="lang-label">EN</span></button>
+    <button class="icon-btn" id="theme-btn" data-i18n-aria="theme" aria-label="החלף מצב תאורה">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
     </button>
   </div>
   <div class="fuse" aria-hidden="true"><div class="fuse-fill" id="fuse"><span class="spark"></span></div></div>
 </header>
 
-<nav class="drawer" id="drawer" aria-label="פרקי התוכנית" hidden>
+<nav class="drawer" id="drawer" data-i18n-aria="chapters" aria-label="פרקי התוכנית" hidden>
   <div class="drawer-panel">
     <div class="drawer-head">
-      <h2 class="ember">פרקי התוכנית</h2>
-      <button class="icon-btn" id="drawer-close" aria-label="סגור ניווט"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <h2 class="ember" data-i18n="chapters">פרקי התוכנית</h2>
+      <button class="icon-btn" id="drawer-close" data-i18n-aria="menu_close" aria-label="סגור ניווט"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
-    <ol class="nav-list">
+    <ol class="nav-list" id="nav-list">
 <li><a href="#ch-1" data-nav="1"><span class="nav-num">א׳</span>למה</a></li>
 <li><a href="#ch-2" data-nav="2"><span class="nav-num">ב׳</span>הבנת הדחף</a></li>
 <li><a href="#ch-3" data-nav="3"><span class="nav-num">ג׳</span>מערכת הגנה טכנית</a></li>
@@ -53,14 +61,15 @@
 <li><a href="#ch-10" data-nav="10"><span class="nav-num">י׳</span>שאלות נפוצות</a></li>
     </ol>
     <div class="drawer-foot">
-      <a href="#ch-8" class="btn btn-soft">למעקב הרצף</a>
-      <button class="btn btn-ghost" id="settings-btn">הגדרות ופרטיות</button>
+      <a href="#ch-8" class="btn btn-soft" data-i18n="to_tracker">למעקב הרצף</a>
+      <button class="btn btn-soft" data-open-share data-i18n="share">שתף רצף</button>
+      <button class="btn btn-ghost" id="settings-btn" data-i18n="settings">הגדרות ופרטיות</button>
     </div>
   </div>
 </nav>
 
 <main id="main">
-<section class="hero" id="top" aria-label="פתיחה">
+<section class="hero" id="top" data-i18n-aria="opening" aria-label="פתיחה">
   <div class="hero-bg" id="hero-bg" aria-hidden="true">
     <picture>
       <source media="(max-width: 700px)" srcset="assets/img/hero-portrait.webp">
@@ -71,27 +80,28 @@
   <canvas id="embers" aria-hidden="true"></canvas>
   <div class="hero-content">
     <div class="plaque">
-      <h1><span class="ember hero-title">תוכנית לשמירת הברית</span></h1>
-      <p class="hero-sub"><span class="ember gold">להיות אדון לעצמך</span></p>
+      <h1><span class="ember hero-title" data-i18n="hero_title">תוכנית לשמירת הברית</span></h1>
+      <p class="hero-sub"><span class="ember gold" data-i18n="hero_sub">להיות אדון לעצמך</span></p>
     </div>
     <figure class="hero-verse" id="daily-verse" aria-live="polite">
+      <span class="verse-label" data-i18n="verse_of_day">פסוק היום</span>
       <blockquote></blockquote><figcaption></figcaption>
     </figure>
     <div class="hero-cta">
-      <a class="btn btn-ember" href="#intro">בוא נתחיל</a>
-      <button class="btn btn-glass" data-checkin>היום שמרתי ✓</button>
+      <a class="btn btn-ember" href="#intro" data-i18n="start">בוא נתחיל</a>
+      <button class="btn btn-glass" data-checkin data-i18n="checkin">היום שמרתי ✓</button>
     </div>
   </div>
-  <a class="scroll-cue" href="#intro" aria-label="גלול לתוכן"><span></span></a>
+  <a class="scroll-cue" href="#intro" data-i18n-aria="scroll" aria-label="גלול לתוכן"><span></span></a>
 </section>
 
+<div id="content">
 <section class="chapter intro" id="intro" aria-label="הקדמה">
-  <div class="card reveal"><div class="card-inner lead"><p>התוכנית הזו מיועדת לגבר שרוצה להשתחרר מפורנו ומאוננות כפייתית. היא לא בנויה על אשמה ולא על כוח רצון בלבד. היא בנויה על הבנה של עצמך, על סביבה שמגינה עליך, על שגרה ועל אנשים לצידך.
+<div class="card reveal"><div class="card-inner lead"><p>התוכנית הזו מיועדת לגבר שרוצה להשתחרר מפורנו ומאוננות כפייתית. היא לא בנויה על אשמה ולא על כוח רצון בלבד. היא בנויה על הבנה של עצמך, על סביבה שמגינה עליך, על שגרה ועל אנשים לצידך.
 לא צריך להיות מושלם כדי להתחיל. מספיק להתחיל היום.</p>
 </div></div>
-  <img class="divider reveal" src="assets/img/divider.webp" alt="" width="1200" height="165" loading="lazy">
+<img class="divider reveal" src="assets/img/divider.webp" alt="" width="1200" height="165" loading="lazy">
 </section>
-
 <section class="chapter" id="ch-1" aria-labelledby="ch-1-t" data-chapter="1">
 <h2 class="bamboo reveal" id="ch-1-t"><span class="num" aria-hidden="true"><span class="ember ">א׳</span></span><span class="sr-only">פרק 1: </span><span class="ember title">למה</span></h2>
 <div class="card reveal"><div class="card-inner"><p>המאבק הזה לא נועד לסבול. הוא נועד לחיות טוב יותר. הרבה גברים שעוברים את הדרך הזו מספרים על דברים דומים:</p>
@@ -320,6 +330,7 @@ HALT - רעב / כעס / בודד / עייף:
 </div></div>
 <div class="card reveal key" id="tracker-card"><div class="card-inner"><h3><span class="ember card-title">הרצף שלי</span></h3><p class="muted">הטבלה מהתוכנית הפכה כאן למעקב חי. הכל נשמר רק במכשיר שלך.</p><div id="tracker"></div><p><strong>אבני דרך:</strong> 7 ימים · 30 יום · 90 יום. תחגוג כל אחת מהן בדרך בריאה.</p>
 </div></div>
+<div class="card reveal" id="stats-card"><div class="card-inner"><h3><span class="ember card-title">תובנות פרטיות</span></h3><p class="muted">דפוסים, לא שיפוט. הנתונים האלה מחושבים ונשמרים רק במכשיר הזה.</p><div id="stats"></div></div></div>
 <div class="card reveal"><div class="card-inner"><h3>שאלות לסיכום שבועי</h3><ol>
 <li>כמה ימים נקיים היו לי השבוע?</li>
 <li>מתי הדחף היה הכי חזק, ולמה?</li>
@@ -357,54 +368,155 @@ HALT - רעב / כעס / בודד / עייף:
 זה בדיוק הרגע של פרוטוקול החירום. אל תחליט כלום. צא מהחדר, תאכל משהו ותלך לישון. מחר תהיה חזק יותר.</p>
 </div></div>
 </section>
-
-<section class="chapter closing" aria-label="סיום">
-  <img class="divider reveal" src="assets/img/divider.webp" alt="" width="1200" height="165" loading="lazy">
-  <div class="card reveal key"><div class="card-inner closing-inner"><blockquote>
+<section class="chapter closing" aria-label="סיום"><img class="divider reveal" src="assets/img/divider.webp" alt="" width="1200" height="165" loading="lazy"><div class="card reveal key"><div class="card-inner closing-inner"><blockquote>
 <p>&quot;טוב ארך אפים מגבור, ומושל ברוחו מלוכד עיר&quot; (משלי טז, לב)</p>
 </blockquote>
 <p><strong>אתה לא ההרגל שלך. אתה מי שבוחר, שוב ושוב, לקום.</strong> 💪</p>
 <p><em>מותר להעתיק, לשתף ולהתאים לעצמך.</em></p>
-</div></div>
-  <p class="privacy-note">🔒 האפליקציה לא שולחת שום מידע. הרצף, הצ׳קליסטים והיומן נשמרים רק בדפדפן של המכשיר הזה.</p>
-</section>
+</div></div><p class="privacy-note">🔒 האפליקציה לא שולחת שום מידע. הרצף, הצ׳קליסטים והיומן נשמרים רק בדפדפן של המכשיר הזה.</p></section>
+</div>
 </main>
 
-<button class="fab" id="fab" data-open-emergency aria-haspopup="dialog">
-  <span class="fab-flame" aria-hidden="true"></span><span>קשה לי</span>
-</button>
-
-<!-- Emergency mode -->
-<div class="emergency" id="emergency" role="dialog" aria-modal="true" aria-labelledby="em-title" hidden>
-  <div class="em-scroll">
-    <div class="em-head">
-      <h2 id="em-title"><span class="ember">מצב חירום: הגל הזה יעבור</span></h2>
-      <button class="icon-btn em-close" id="em-close" aria-label="סגור מצב חירום"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    </div>
-    <p class="em-say">תגיד בקול: <b>״זה דחף. הוא יעבור.״</b></p>
-
-    <div class="breath" aria-live="polite">
-      <div class="breath-circle" id="breath-circle"><span id="breath-label">שאיפה</span></div>
-      <p class="muted">נשימה איטית: 4 שניות שאיפה, 6 שניות נשיפה.</p>
-    </div>
-
-    <div class="timer card"><div class="card-inner">
-      <h3><span class="ember card-title">כלל 10 הדקות</span></h3>
-      <p>״אני לא מחליט עכשיו. אני מחכה 10 דקות.״</p>
-      <div class="timer-ring">
-        <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" id="ring-fg" cx="60" cy="60" r="52"/></svg>
-        <output id="timer-out" aria-live="off">10:00</output>
-      </div>
-      <div class="timer-btns">
-        <button class="btn btn-ember" id="timer-start">התחל</button>
-        <button class="btn btn-ghost" id="timer-reset">אפס</button>
-      </div>
-      <p class="timer-done" id="timer-done" hidden>עברו 10 דקות. כל הכבוד. הגל ירד? אם לא, עוד סבב. אתה חזק מזה.</p>
-    </div></div>
-
-    <div class="card"><div class="card-inner">
-      <h3><span class="ember card-title">שלב אחר שלב</span></h3>
-      <ol class="steps">
+<template id="tpl-he"><section class="chapter intro" id="intro" aria-label="הקדמה">
+<div class="card reveal"><div class="card-inner lead"><p>התוכנית הזו מיועדת לגבר שרוצה להשתחרר מפורנו ומאוננות כפייתית. היא לא בנויה על אשמה ולא על כוח רצון בלבד. היא בנויה על הבנה של עצמך, על סביבה שמגינה עליך, על שגרה ועל אנשים לצידך.
+לא צריך להיות מושלם כדי להתחיל. מספיק להתחיל היום.</p>
+</div></div>
+<img class="divider reveal" src="assets/img/divider.webp" alt="" width="1200" height="165" loading="lazy">
+</section>
+<section class="chapter" id="ch-1" aria-labelledby="ch-1-t" data-chapter="1">
+<h2 class="bamboo reveal" id="ch-1-t"><span class="num" aria-hidden="true"><span class="ember ">א׳</span></span><span class="sr-only">פרק 1: </span><span class="ember title">למה</span></h2>
+<div class="card reveal"><div class="card-inner"><p>המאבק הזה לא נועד לסבול. הוא נועד לחיות טוב יותר. הרבה גברים שעוברים את הדרך הזו מספרים על דברים דומים:</p>
+<ul>
+<li><strong>פוקוס:</strong> הראש פנוי יותר לעבודה, ליצירה וללימוד.</li>
+<li><strong>אנרגיה:</strong> פחות ערבים שנגמרים בתחושת ריקנות ובזבוז זמן מול מסך.</li>
+<li><strong>ביטחון:</strong> כשאתה עומד במילה שנתת לעצמך, אתה מתחיל לסמוך על עצמך.</li>
+<li><strong>נוכחות בקשר:</strong> אתה מסתכל על אנשים, ועל אישה בפרט, כעל בני אדם ולא כעל גירוי. זה מכין אותך לזוגיות אמיתית.</li>
+<li><strong>חיבור רוחני:</strong> בלשון חז&quot;ל זו <strong>שמירת הברית</strong>, שמירה על הקדושה שלך ועל הקשר שלך עם הקב&quot;ה.</li>
+</ul>
+<blockquote>
+<p>הערה כנה: אלה חוויות אישיות שהרבה אנשים מתארים, לא הבטחה רפואית. לא תמצא כאן &quot;מחקרים&quot; מומצאים או מספרים קסומים. מה שכן ברור: הרגל שאתה שולט בו עדיף על הרגל ששולט בך.</p>
+</blockquote>
+</div></div>
+<div class="card reveal key" id=card-why><div class="card-inner"><h3><span class="ember card-title">ה&quot;למה&quot; שלי (מלא בעצמך)</span></h3><p>כתוב את זה בכנות. תחזור לכאן ברגעים קשים.</p>
+<ul>
+<li>אני רוצה להשתחרר מזה כי: ____________________</li>
+<li>איך אני רוצה להרגיש בעוד 90 יום: ____________________</li>
+<li>איזה אדם / בן זוג / אבא אני רוצה להיות: ____________________</li>
+<li>מה ההרגל הזה לוקח ממני היום: ____________________</li>
+</ul>
+</div></div>
+</section>
+<section class="chapter" id="ch-2" aria-labelledby="ch-2-t" data-chapter="2">
+<h2 class="bamboo reveal" id="ch-2-t"><span class="num" aria-hidden="true"><span class="ember ">ב׳</span></span><span class="sr-only">פרק 2: </span><span class="ember title">הבנת הדחף</span></h2>
+<div class="card reveal"><div class="card-inner"><p>הדחף לא מגיע משום מקום. ברוב המקרים הוא תגובה למשהו אחר: עייפות, בדידות, לחץ או שעמום. הפורנו הוא &quot;פתרון&quot; מהיר ושקרי לצורך אמיתי.</p>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>HALT: ארבעה מצבים מסוכנים</h3><div class="table-wrap"><table>
+<thead>
+<tr>
+<th>מצב</th>
+<th>מה קורה</th>
+<th>מה באמת צריך</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>H</strong>ungry (רעב)</td>
+<td>הגוף חסר, הסבלנות קצרה</td>
+<td>לאכול משהו אמיתי</td>
+</tr>
+<tr>
+<td><strong>A</strong>ngry (כעס/לחץ)</td>
+<td>רוצים &quot;לשחרר&quot;</td>
+<td>תנועה, לדבר, לכתוב</td>
+</tr>
+<tr>
+<td><strong>L</strong>onely (בדידות)</td>
+<td>חוסר קרבה וחיבור</td>
+<td>שיחה עם אדם אמיתי</td>
+</tr>
+<tr>
+<td><strong>T</strong>ired (עייפות)</td>
+<td>שליטה עצמית נמוכה</td>
+<td><strong>ללכת לישון</strong></td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>טריגרים נפוצים נוספים</h3><ul>
+<li>שעמום וזמן לא מתוכנן</li>
+<li>טלפון במיטה, בעיקר בשעות הלילה המאוחרות</li>
+<li>גלילה ברשתות חברתיות (&quot;רק להציץ&quot;)</li>
+<li>להיות לבד בבית לאורך זמן</li>
+<li>אחרי הצלחה גדולה (&quot;מגיע לי&quot;) או אחרי כישלון (&quot;ממילא הכל הרוס&quot;)</li>
+</ul>
+<blockquote>
+<p>&quot;אין יצר הרע שולט אלא במה שעיניו רואות&quot; (סוטה ח, א)
+המלחמה מתחילה הרבה לפני הרגע הקשה. היא מתחילה במה שאתה מכניס לעיניים.</p>
+</blockquote>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>תרגיל: מפת הטריגרים שלי</h3><ul class="contains-task-list">
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s2c3-1"><span>כתבתי את 3 השעות הכי מסוכנות שלי ביום</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s2c3-2"><span>כתבתי את 3 המצבים הרגשיים שהכי מובילים אותי לנפילה</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s2c3-3"><span>כתבתי את 3 המקומות או האפליקציות שמהם זה בדרך כלל מתחיל</span></label></li>
+</ul>
+</div></div>
+</section>
+<section class="chapter" id="ch-3" aria-labelledby="ch-3-t" data-chapter="3">
+<h2 class="bamboo reveal" id="ch-3-t"><span class="num" aria-hidden="true"><span class="ember ">ג׳</span></span><span class="sr-only">פרק 3: </span><span class="ember title">מערכת הגנה טכנית</span></h2>
+<div class="card reveal"><div class="card-inner"><p>כוח רצון נגמר בסוף יום ארוך. מערכת לא נגמרת. <strong>תבנה סביבה שבה הנפילה קשה והבחירה הטובה קלה.</strong></p>
+<blockquote>
+<p>יוסף הצדיק לא ניהל דיון עם הניסיון: &quot;ויעזוב בגדו בידה וינס ויצא החוצה&quot; (בראשית לט, יב). לפעמים הגבורה היא פשוט לברוח, ולסגור את הדלת מראש.</p>
+</blockquote>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>צ&#x27;קליסט הגנה</h3><ul class="contains-task-list">
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-1"><span><strong>הטלפון לא נכנס לחדר השינה.</strong> קנה שעון מעורר פשוט וטען את הטלפון בסלון.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-2"><span><strong>סינון DNS ברמת הרשת או המכשיר</strong>, למשל Cloudflare for Families (<code>1.1.1.3</code> ו-<code>1.0.0.3</code>), שחוסם תוכן למבוגרים.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-3"><span><strong>סינון בטלפון:</strong> להפעיל את הגבלות התוכן המובנות (Screen Time באייפון, Digital Wellbeing / Family Link באנדרואיד) ולחסום אתרים למבוגרים.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-4"><span><strong>בלי גלישה בסתר (Incognito).</strong> לחסום אותה כשאפשר.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-5"><span><strong>הגבלות זמן לאפליקציות</strong> שמובילות לגלילה בלי סוף.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-6"><span><strong>הסיסמה להגבלות אצל מישהו אחר</strong>, חבר או חברותא, ולא אצלך.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-7"><span><strong>תוכנת אחריותיות (Accountability)</strong> ששולחת דוח לשותף שלך.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-8"><span><strong>המחשב במקום פתוח</strong>, לא במיטה, ובלי לעבוד עליו מאוחר בלילה.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-9"><span><strong>ניקוי:</strong> למחוק קבצים, סימניות וחשבונות ולהפסיק לעקוב אחרי חשבונות שמובילים לשם.</span></label></li>
+</ul>
+<blockquote>
+<p>הסינון לא אמור להיות מושלם. הוא אמור לייצר <strong>חיכוך</strong>: כמה שניות שבהן אתה נזכר מי אתה רוצה להיות.</p>
+</blockquote>
+</div></div>
+</section>
+<section class="chapter" id="ch-4" aria-labelledby="ch-4-t" data-chapter="4">
+<h2 class="bamboo reveal" id="ch-4-t"><span class="num" aria-hidden="true"><span class="ember ">ד׳</span></span><span class="sr-only">פרק 4: </span><span class="ember title">שגרה יומית</span></h2>
+<div class="card reveal"><div class="card-inner"><p>יום מלא ומכוון משאיר ליצר הרבה פחות מקום. &quot;בראתי יצר הרע, בראתי לו תורה תבלין&quot; (קידושין ל, ב).</p>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>בוקר</h3><ul class="contains-task-list">
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c1-1"><span>קם בשעה קבועה, בלי טלפון ב-30 הדקות הראשונות</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c1-2"><span>מודה אני / תפילה / רגע של כוונה ליום</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c1-3"><span>תנועה: אימון, הליכה או לפחות כמה דקות של מתיחות ושכיבות סמיכה</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c1-4"><span>מקלחת קרה (אופציונלי): דקה של מים קרים בסוף המקלחת, אימון קטן בעמידה מול אי-נוחות</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c1-5"><span>כותב שורה אחת: &quot;המטרה שלי היום היא...&quot;</span></label></li>
+</ul>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>במהלך היום</h3><ul class="contains-task-list">
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c2-1"><span>עבודה בבלוקים ממוקדים, עם הפסקות קצרות <strong>מחוץ</strong> למסך</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c2-2"><span>ארוחות מסודרות (ה-H של HALT)</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c2-3"><span>שיחה אחת לפחות עם אדם אמיתי</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c2-4"><span>לימוד, אפילו 10-15 דקות</span></label></li>
+</ul>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>ערב</h3><ul class="contains-task-list">
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c3-1"><span>שעת &quot;כיבוי מסכים&quot; קבועה (למשל שעה לפני השינה)</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c3-2"><span>הטלפון נשאר מחוץ לחדר</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c3-3"><span>סיכום יום קצר: מה הצליח, מה היה קשה</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c3-4"><span><strong>קריאת שמע על המיטה</strong>: לסגור את היום בקדושה ובשקט</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c3-5"><span>שינה מספקת. עייפות היא אחד הטריגרים הכי חזקים.</span></label></li>
+</ul>
+</div></div>
+</section>
+<section class="chapter" id="ch-5" aria-labelledby="ch-5-t" data-chapter="5">
+<h2 class="bamboo reveal" id="ch-5-t"><span class="num" aria-hidden="true"><span class="ember ">ה׳</span></span><span class="sr-only">פרק 5: </span><span class="ember title">פרוטוקול חירום: &quot;קשה לי&quot;</span></h2>
+<div class="card reveal"><div class="card-inner"><p>הדחף מרגיש כאילו הוא יימשך לנצח, אבל הוא בא בגלים: עולה, מגיע לשיא ויורד. המטרה שלך היא לא &quot;לנצח את היצר לתמיד&quot;, אלא <strong>לעבור את הגל הזה</strong>.</p>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>שלב אחר שלב</h3><ol>
 <li><strong>עצור ותן לזה שם.</strong> תגיד בקול: &quot;זה דחף. הוא יעבור.&quot;</li>
 <li><strong>צא מהחדר.</strong> עכשיו, בלי ויכוח. שנה מקום, ועדיף לצאת החוצה.</li>
 <li><strong>20 שכיבות סמיכה</strong> (או סקוואטים או ריצה במקום). תוציא את האנרגיה מהגוף.</li>
@@ -415,23 +527,514 @@ HALT - רעב / כעס / בודד / עייף:
 <li><strong>תקרא את ה&quot;למה&quot; שלך</strong> (סעיף 1).</li>
 <li><strong>פרק או מזמור תהילים / תפילה קצרה במילים שלך.</strong></li>
 </ol>
+</div></div>
+<div class="card reveal key" id=card-emergency><div class="card-inner"><h3><span class="ember card-title">כרטיס חירום (צלם או הדפס)</span></h3><p><strong>דחף = גל. הוא עובר.</strong></p>
+<ol>
+<li>לצאת מהחדר</li>
+<li>20 שכיבות סמיכה</li>
+<li>לחכות 10 דקות</li>
+<li>לכתוב לשותף</li>
+<li>לאכול / לישון / לדבר</li>
+</ol>
+<button class="btn btn-ember" data-open-emergency>לפתוח מצב חירום עכשיו</button></div></div>
+</section>
+<section class="chapter" id="ch-6" aria-labelledby="ch-6-t" data-chapter="6">
+<h2 class="bamboo reveal" id="ch-6-t"><span class="num" aria-hidden="true"><span class="ember ">ו׳</span></span><span class="sr-only">פרק 6: </span><span class="ember title">קשר וחברה</span></h2>
+<div class="card reveal"><div class="card-inner"><p>הרבה פעמים מה שמזין את ההרגל הזה הוא <strong>בדידות</strong>. הפורנו מבטיח קרבה ונותן ריקנות. התרופה האמיתית היא קשר אמיתי.</p>
+<ul class="contains-task-list">
+<li>
+<p><strong>חברים:</strong> תשקיע בכמה חברויות עמוקות. ארוחה, אימון משותף, שיחת טלפון.</p>
+</li>
+<li>
+<p><strong>חברותא:</strong> לימוד קבוע עם חבר בונה גם חיבור וגם מחויבות.</p>
+</li>
+<li>
+<p><strong>שותף אחריותיות:</strong> אדם אחד שאתה סומך עליו, שאתה מדווח לו כל יום או כל שבוע ושאפשר לכתוב לו ברגע קשה. בלי שיפוטיות, בשני הכיוונים.</p>
+</li>
+<li>
+<p><strong>קהילה:</strong> בית כנסת, קבוצת אימון, מפגשים בתחום המקצועי שלך, התנדבות.</p>
+</li>
+<li>
+<p><strong>זוגיות:</strong> אם אתה רוצה קשר משמעותי, תפעל בשבילו בדרך שמתאימה לך ולערכים שלך: שידוכים, היכרויות דרך חברים, אירועים קהילתיים. העבודה על שמירת הברית היא חלק מההכנה לזוגיות. היא מלמדת אותך להיות נוכח, נאמן ומכבד.</p>
+</li>
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" type="checkbox" data-check="s6c0-1"> בחרתי שותף אחריותיות: __________</p>
+</li>
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" type="checkbox" data-check="s6c0-2"> קבעתי לימוד קבוע או מפגש קבוע עם חבר</p>
+</li>
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" type="checkbox" data-check="s6c0-3"> עשיתי השבוע צעד אחד לקראת היכרות / קשר</p>
+</li>
+</ul>
+</div></div>
+</section>
+<section class="chapter" id="ch-7" aria-labelledby="ch-7-t" data-chapter="7">
+<h2 class="bamboo reveal" id="ch-7-t"><span class="num" aria-hidden="true"><span class="ember ">ז׳</span></span><span class="sr-only">פרק 7: </span><span class="ember title">מה עושים אחרי נפילה</span></h2>
+<div class="card reveal"><div class="card-inner"><blockquote>
+<p>&quot;כי שבע יפול צדיק וקם&quot; (משלי כד, טז)</p>
+</blockquote>
+<p>הפסוק לא אומר שהצדיק לא נופל. הוא אומר שהוא <strong>קם</strong>. נפילה היא לא סוף הדרך. היא מידע.</p>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>מה לא עושים</h3><ul>
+<li>❌ לא מענישים את עצמך ולא נכנסים ל&quot;ממילא הכל הרוס&quot;</li>
+<li>❌ לא ממשיכים &quot;כי כבר נפלתי&quot;. הסחרור (Binge) הוא הנזק הגדול באמת.</li>
+<li>❌ לא מסתתרים מהשותף שלך</li>
+</ul>
+</div></div>
+<div class="card reveal key" id=card-reset><div class="card-inner"><h3><span class="ember card-title">מה כן עושים: איפוס של 24 שעות</span></h3><ol>
+<li><strong>עוצרים עכשיו.</strong> סוגרים את המסך ויוצאים מהחדר.</li>
+<li><strong>מקלחת, אוכל, שינה.</strong> מחזירים את הגוף לאיזון.</li>
+<li><strong>מספרים לשותף</strong>, בקצרה וביושר.</li>
+<li><strong>מנתחים בלי שיפוט</strong> (תבנית למטה).</li>
+<li><strong>מעדכנים את התוכנית:</strong> איזה חור במערכת התגלה, ואיך סוגרים אותו?</li>
+<li><strong>מתחילים מחדש מחר בבוקר</strong>, עם כוונה.</li>
+</ol>
+<button class="btn btn-soft" data-open-reset>נפלתי. מתחילים איפוס בעדינות</button></div></div>
+<div class="card reveal"><div class="card-inner"><h3>תבנית יומן נפילה</h3><pre><code>תאריך ושעה:
+איפה הייתי / על איזה מכשיר:
+HALT - רעב / כעס / בודד / עייף:
+מה קרה בשעות שלפני:
+הרגע שבו עוד יכולתי לעצור:
+מה חסם / לא חסם:
+מה אני משנה בתוכנית מהיום:
+משפט חמלה לעצמי:
+</code></pre>
+<blockquote>
+<p>&quot;אל תאמין בעצמך עד יום מותך&quot; (אבות ב, ד). גם אחרי רצף ארוך תמשיך לשמור על המערכת. רצף טוב הוא לא סיבה להוריד את ההגנות.</p>
+</blockquote>
+</div></div>
+</section>
+<section class="chapter" id="ch-8" aria-labelledby="ch-8-t" data-chapter="8">
+<h2 class="bamboo reveal" id="ch-8-t"><span class="num" aria-hidden="true"><span class="ember ">ח׳</span></span><span class="sr-only">פרק 8: </span><span class="ember title">מעקב והתקדמות</span></h2>
+<div class="card reveal"><div class="card-inner"><p>אל תמדוד רק את הרצף. תמדוד גם <strong>כמה מהר אתה קם</strong> וכמה התוכנית שלך משתפרת.</p>
+</div></div>
+<div class="card reveal key" id="tracker-card"><div class="card-inner"><h3><span class="ember card-title">הרצף שלי</span></h3><p class="muted">הטבלה מהתוכנית הפכה כאן למעקב חי. הכל נשמר רק במכשיר שלך.</p><div id="tracker"></div><p><strong>אבני דרך:</strong> 7 ימים · 30 יום · 90 יום. תחגוג כל אחת מהן בדרך בריאה.</p>
+</div></div>
+<div class="card reveal" id="stats-card"><div class="card-inner"><h3><span class="ember card-title">תובנות פרטיות</span></h3><p class="muted">דפוסים, לא שיפוט. הנתונים האלה מחושבים ונשמרים רק במכשיר הזה.</p><div id="stats"></div></div></div>
+<div class="card reveal"><div class="card-inner"><h3>שאלות לסיכום שבועי</h3><ol>
+<li>כמה ימים נקיים היו לי השבוע?</li>
+<li>מתי הדחף היה הכי חזק, ולמה?</li>
+<li>מה עבד לי בפרוטוקול החירום?</li>
+<li>איך ישנתי? התאמנתי? אכלתי?</li>
+<li>עם מי הייתי בקשר אמיתי השבוע?</li>
+<li>איזה שיפור אחד אני מכניס לשבוע הבא?</li>
+</ol>
+</div></div>
+</section>
+<section class="chapter" id="ch-9" aria-labelledby="ch-9-t" data-chapter="9">
+<h2 class="bamboo reveal" id="ch-9-t"><span class="num" aria-hidden="true"><span class="ember ">ט׳</span></span><span class="sr-only">פרק 9: </span><span class="ember title">כלים ומשאבים</span></h2>
+<div class="card reveal"><div class="card-inner"><ul>
+<li><strong><a href="https://one.one.one.one/family/">Cloudflare for Families</a></strong>: סינון DNS חינמי (<code>1.1.1.3</code> / <code>1.0.0.3</code>).</li>
+<li><strong><a href="https://www.covenanteyes.com/">Covenant Eyes</a></strong>: תוכנת אחריותיות וסינון (בתשלום).</li>
+<li><strong><a href="https://guardyoureyes.com/">Guard Your Eyes (GYE)</a></strong>: קהילה ומשאבים יהודיים למאבק בפורנו ובהתמכרות מינית.</li>
+<li><strong><a href="https://netfree.link/">NetFree</a></strong>: ספק סינון אינטרנט ישראלי.</li>
+<li><strong>ער&quot;ן, עזרה ראשונה נפשית: 1201</strong> (בישראל). זמינים לשיחה בכל שעה.</li>
+</ul>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>מתי לפנות לעזרה מקצועית</h3><p>אם זה מרגיש <strong>כפייתי</strong> (&quot;אני לא מצליח לעצור למרות שאני מאוד רוצה&quot;), אם זה פוגע במצב הרוח, בשינה, בעבודה או במערכות יחסים, או אם יש ייאוש, חרדה או דיכאון, <strong>פנה לאיש מקצוע</strong>: פסיכולוג, מטפל שמתמחה בהתמכרויות או רופא משפחה. זה לא כישלון. זה צעד של גבורה. אם יש לך מחשבות לפגוע בעצמך, פנה מיד לער&quot;ן (1201) או למד&quot;א (101).</p>
+</div></div>
+</section>
+<section class="chapter" id="ch-10" aria-labelledby="ch-10-t" data-chapter="10">
+<h2 class="bamboo reveal" id="ch-10-t"><span class="num" aria-hidden="true"><span class="ember ">י׳</span></span><span class="sr-only">פרק 10: </span><span class="ember title">שאלות נפוצות</span></h2>
+<div class="card reveal"><div class="card-inner"><p><strong>נפלתי אחרי רצף ארוך. כל ההתקדמות נמחקה?</strong>
+לא. הימים הנקיים בנו בך שרירים: הרגלים, מודעות וכלים. נפילה אחת לא מוחקת אותם. מה שקובע הוא מה שאתה עושה ב-24 השעות הבאות.</p>
+<p><strong>יש לי חלומות לילה (קרי). זו נפילה?</strong>
+לא. זה תהליך טבעי שלא בשליטתך. התוכנית עוסקת במה שבבחירתך.</p>
+<p><strong>אני יכול לעשות את זה לבד?</strong>
+אפשר להתחיל לבד, אבל כמעט כל מי שמצליח לאורך זמן עושה את זה עם אנשים לצידו. הבושה גדלה בחושך. תמצא אדם אחד שאפשר לדבר איתו.</p>
+<p><strong>כמה זמן זה לוקח?</strong>
+אין מספר קסם. 90 יום הם יעד ראשון טוב, אבל המטרה האמיתית היא לבנות חיים שבהם אתה פחות צריך את הבריחה הזו.</p>
+<p><strong>מה אם פשוט אין לי כוח הערב?</strong>
+זה בדיוק הרגע של פרוטוקול החירום. אל תחליט כלום. צא מהחדר, תאכל משהו ותלך לישון. מחר תהיה חזק יותר.</p>
+</div></div>
+</section>
+<section class="chapter closing" aria-label="סיום"><img class="divider reveal" src="assets/img/divider.webp" alt="" width="1200" height="165" loading="lazy"><div class="card reveal key"><div class="card-inner closing-inner"><blockquote>
+<p>&quot;טוב ארך אפים מגבור, ומושל ברוחו מלוכד עיר&quot; (משלי טז, לב)</p>
+</blockquote>
+<p><strong>אתה לא ההרגל שלך. אתה מי שבוחר, שוב ושוב, לקום.</strong> 💪</p>
+<p><em>מותר להעתיק, לשתף ולהתאים לעצמך.</em></p>
+</div></div><p class="privacy-note">🔒 האפליקציה לא שולחת שום מידע. הרצף, הצ׳קליסטים והיומן נשמרים רק בדפדפן של המכשיר הזה.</p></section></template>
+<template id="tpl-en"><section class="chapter intro" id="intro" aria-label="Introduction">
+<div class="card reveal"><div class="card-inner lead"><p>This plan is for a man who wants to break free from porn and compulsive masturbation. It isn't built on guilt, and it isn't built on willpower alone. It's built on understanding yourself, on an environment that protects you, on routine, and on people beside you.
+You don't need to be perfect to start. It's enough to start today.</p>
+</div></div>
+<img class="divider reveal" src="assets/img/divider.webp" alt="" width="1200" height="165" loading="lazy">
+</section>
+<section class="chapter" id="ch-1" aria-labelledby="ch-1-t" data-chapter="1">
+<h2 class="bamboo reveal" id="ch-1-t"><span class="num" aria-hidden="true"><span class="ember ">I</span></span><span class="sr-only">Chapter 1: </span><span class="ember title">Why</span></h2>
+<div class="card reveal"><div class="card-inner"><p>This struggle isn't meant to make you suffer. It's meant to help you live better. Many men who walk this path describe similar things:</p>
+<ul>
+<li><strong>Focus:</strong> your mind is freer for work, creativity and study.</li>
+<li><strong>Energy:</strong> fewer evenings that end in emptiness and time wasted in front of a screen.</li>
+<li><strong>Confidence:</strong> when you keep the word you gave yourself, you start to trust yourself.</li>
+<li><strong>Presence in relationships:</strong> you see people, and women in particular, as human beings rather than as stimulation. That prepares you for a real relationship.</li>
+<li><strong>Spiritual connection:</strong> in the language of the Sages this is <strong>shmirat habrit</strong>, guarding the covenant: protecting your holiness and your bond with God.</li>
+</ul>
+<blockquote>
+<p>An honest note: these are personal experiences many people describe, not a medical promise. You won't find made-up &quot;studies&quot; or magic numbers here. What is clear: a habit you control is better than a habit that controls you.</p>
+</blockquote>
+</div></div>
+<div class="card reveal key" id=card-why><div class="card-inner"><h3><span class="ember card-title">My &quot;why&quot; (fill it in yourself)</span></h3><p>Write it honestly. Come back here in hard moments.</p>
+<ul>
+<li>I want to break free from this because: ____________________</li>
+<li>How I want to feel 90 days from now: ____________________</li>
+<li>The man / partner / father I want to be: ____________________</li>
+<li>What this habit takes from me today: ____________________</li>
+</ul>
+</div></div>
+</section>
+<section class="chapter" id="ch-2" aria-labelledby="ch-2-t" data-chapter="2">
+<h2 class="bamboo reveal" id="ch-2-t"><span class="num" aria-hidden="true"><span class="ember ">II</span></span><span class="sr-only">Chapter 2: </span><span class="ember title">Understanding the urge</span></h2>
+<div class="card reveal"><div class="card-inner"><p>The urge doesn't come from nowhere. Most of the time it's a response to something else: tiredness, loneliness, stress or boredom. Porn is a quick, false &quot;solution&quot; to a real need.</p>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>HALT: four risky states</h3><div class="table-wrap"><table>
+<thead>
+<tr>
+<th>State</th>
+<th>What happens</th>
+<th>What you really need</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>H</strong>ungry</td>
+<td>Your body is depleted, patience is short</td>
+<td>Eat something real</td>
+</tr>
+<tr>
+<td><strong>A</strong>ngry (or stressed)</td>
+<td>You want to &quot;release&quot; it</td>
+<td>Move, talk, write</td>
+</tr>
+<tr>
+<td><strong>L</strong>onely</td>
+<td>Missing closeness and connection</td>
+<td>A conversation with a real person</td>
+</tr>
+<tr>
+<td><strong>T</strong>ired</td>
+<td>Self-control is low</td>
+<td><strong>Go to sleep</strong></td>
+</tr>
+</tbody>
+</table></div>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>Other common triggers</h3><ul>
+<li>Boredom and unplanned time</li>
+<li>Phone in bed, especially late at night</li>
+<li>Scrolling social media (&quot;just a peek&quot;)</li>
+<li>Being home alone for long stretches</li>
+<li>After a big success (&quot;I deserve it&quot;) or after a failure (&quot;everything's ruined anyway&quot;)</li>
+</ul>
+<blockquote>
+<p>&quot;The evil inclination rules only over what the eyes see.&quot; (Talmud, Sotah 8a)
+The battle starts long before the hard moment. It starts with what you let in through your eyes.</p>
+</blockquote>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>Exercise: my trigger map</h3><ul class="contains-task-list">
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s2c3-1"><span>I wrote down my 3 most dangerous hours of the day</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s2c3-2"><span>I wrote down the 3 emotional states that most often lead me to fall</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s2c3-3"><span>I wrote down the 3 places or apps where it usually starts</span></label></li>
+</ul>
+</div></div>
+</section>
+<section class="chapter" id="ch-3" aria-labelledby="ch-3-t" data-chapter="3">
+<h2 class="bamboo reveal" id="ch-3-t"><span class="num" aria-hidden="true"><span class="ember ">III</span></span><span class="sr-only">Chapter 3: </span><span class="ember title">Technical defense system</span></h2>
+<div class="card reveal"><div class="card-inner"><p>Willpower runs out at the end of a long day. A system doesn't. <strong>Build an environment where falling is hard and the good choice is easy.</strong></p>
+<blockquote>
+<p>Joseph the righteous didn't debate with temptation: &quot;He left his garment in her hand, and fled, and went outside.&quot; (Genesis 39:12). Sometimes strength simply means running away, and closing the door in advance.</p>
+</blockquote>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>Defense checklist</h3><ul class="contains-task-list">
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-1"><span><strong>The phone doesn't enter the bedroom.</strong> Buy a simple alarm clock and charge the phone in the living room.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-2"><span><strong>DNS filtering on the network or device</strong>, for example Cloudflare for Families (<code>1.1.1.3</code> and <code>1.0.0.3</code>), which blocks adult content.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-3"><span><strong>Phone filtering:</strong> turn on the built-in content restrictions (Screen Time on iPhone, Digital Wellbeing / Family Link on Android) and block adult sites.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-4"><span><strong>No private browsing (Incognito).</strong> Block it where possible.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-5"><span><strong>App time limits</strong> for apps that lead to endless scrolling.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-6"><span><strong>Someone else holds the restrictions password</strong>, a friend or chavruta (study partner), not you.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-7"><span><strong>Accountability software</strong> that sends a report to your partner.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-8"><span><strong>The computer in an open space</strong>, not in bed, and no working on it late at night.</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s3c1-9"><span><strong>Clean-up:</strong> delete files, bookmarks and accounts, and unfollow accounts that lead there.</span></label></li>
+</ul>
+<blockquote>
+<p>Filtering doesn't need to be perfect. It needs to create <strong>friction</strong>: a few seconds in which you remember who you want to be.</p>
+</blockquote>
+</div></div>
+</section>
+<section class="chapter" id="ch-4" aria-labelledby="ch-4-t" data-chapter="4">
+<h2 class="bamboo reveal" id="ch-4-t"><span class="num" aria-hidden="true"><span class="ember ">IV</span></span><span class="sr-only">Chapter 4: </span><span class="ember title">Daily routine</span></h2>
+<div class="card reveal"><div class="card-inner"><p>A full, intentional day leaves the inclination much less room. &quot;I created the evil inclination, and I created Torah as its antidote.&quot; (Talmud, Kiddushin 30b).</p>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>Morning</h3><ul class="contains-task-list">
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c1-1"><span>Get up at a fixed time, no phone for the first 30 minutes</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c1-2"><span>Modeh Ani / prayer / a moment of intention for the day</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c1-3"><span>Movement: a workout, a walk, or at least a few minutes of stretching and push-ups</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c1-4"><span>Cold shower (optional): a minute of cold water at the end of your shower, a small daily practice in facing discomfort</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c1-5"><span>Write one line: &quot;My goal today is...&quot;</span></label></li>
+</ul>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>During the day</h3><ul class="contains-task-list">
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c2-1"><span>Work in focused blocks, with short breaks <strong>away from</strong> the screen</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c2-2"><span>Regular meals (the H in HALT)</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c2-3"><span>At least one conversation with a real person</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c2-4"><span>Study, even 10-15 minutes</span></label></li>
+</ul>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>Evening</h3><ul class="contains-task-list">
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c3-1"><span>A fixed &quot;screens off&quot; time (for example an hour before bed)</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c3-2"><span>The phone stays outside the bedroom</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c3-3"><span>A short daily review: what went well, what was hard</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c3-4"><span><strong>The bedtime Shema (Kriat Shema al hamita)</strong>: close the day in holiness and quiet</span></label></li>
+<li class="task-list-item"><label><input class="task-list-item-checkbox" type="checkbox" data-check="s4c3-5"><span>Enough sleep. Tiredness is one of the strongest triggers.</span></label></li>
+</ul>
+</div></div>
+</section>
+<section class="chapter" id="ch-5" aria-labelledby="ch-5-t" data-chapter="5">
+<h2 class="bamboo reveal" id="ch-5-t"><span class="num" aria-hidden="true"><span class="ember ">V</span></span><span class="sr-only">Chapter 5: </span><span class="ember title">Emergency protocol: &quot;It&#x27;s hard right now&quot;</span></h2>
+<div class="card reveal"><div class="card-inner"><p>The urge feels like it will last forever, but it comes in waves: it rises, peaks and falls. Your goal isn't &quot;to defeat the inclination forever&quot;, but <strong>to get through this wave</strong>.</p>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>Step by step</h3><ol>
+<li><strong>Stop and name it.</strong> Say out loud: &quot;This is an urge. It will pass.&quot;</li>
+<li><strong>Leave the room.</strong> Now, no arguing. Change places, ideally go outside.</li>
+<li><strong>20 push-ups</strong> (or squats, or running in place). Get the energy out of your body.</li>
+<li><strong>The 10-minute rule:</strong> &quot;I'm not deciding now. I'm waiting 10 minutes.&quot; Usually the wave subsides.</li>
+<li><strong>Urge surfing:</strong> slow breathing, 4 seconds in and 6 seconds out. Notice where in your body you feel the urge and just watch it, without acting.</li>
+<li><strong>Call someone.</strong> You don't have to say what it's about. You can text your partner: &quot;It's hard for me right now.&quot;</li>
+<li><strong>Check HALT:</strong> am I hungry? angry? lonely? tired? Take care of the real need.</li>
+<li><strong>Read your &quot;why&quot;</strong> (section 1).</li>
+<li><strong>A chapter or psalm of Tehillim / a short prayer in your own words.</strong></li>
+</ol>
+</div></div>
+<div class="card reveal key" id=card-emergency><div class="card-inner"><h3><span class="ember card-title">Emergency card (screenshot or print it)</span></h3><p><strong>Urge = wave. It passes.</strong></p>
+<ol>
+<li>Leave the room</li>
+<li>20 push-ups</li>
+<li>Wait 10 minutes</li>
+<li>Text your partner</li>
+<li>Eat / sleep / talk</li>
+</ol>
+<button class="btn btn-ember" data-open-emergency>Open emergency mode now</button></div></div>
+</section>
+<section class="chapter" id="ch-6" aria-labelledby="ch-6-t" data-chapter="6">
+<h2 class="bamboo reveal" id="ch-6-t"><span class="num" aria-hidden="true"><span class="ember ">VI</span></span><span class="sr-only">Chapter 6: </span><span class="ember title">Connection and community</span></h2>
+<div class="card reveal"><div class="card-inner"><p>Very often what feeds this habit is <strong>loneliness</strong>. Porn promises closeness and delivers emptiness. The real remedy is real connection.</p>
+<ul class="contains-task-list">
+<li>
+<p><strong>Friends:</strong> invest in a few deep friendships. A meal, a shared workout, a phone call.</p>
+</li>
+<li>
+<p><strong>Chavruta:</strong> regular study with a friend builds both connection and commitment.</p>
+</li>
+<li>
+<p><strong>Accountability partner:</strong> one person you trust, whom you report to every day or every week and can message in a hard moment. No judgment, in both directions.</p>
+</li>
+<li>
+<p><strong>Community:</strong> synagogue, a training group, meetups in your professional field, volunteering.</p>
+</li>
+<li>
+<p><strong>Relationships:</strong> if you want a meaningful relationship, act on it in a way that fits you and your values: a matchmaker (shidduchim), introductions through friends, community events. Working on guarding the covenant is part of preparing for a relationship. It teaches you to be present, faithful and respectful.</p>
+</li>
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" type="checkbox" data-check="s6c0-1"> I chose an accountability partner: __________</p>
+</li>
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" type="checkbox" data-check="s6c0-2"> I set a regular study session or a regular meeting with a friend</p>
+</li>
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" type="checkbox" data-check="s6c0-3"> This week I took one step toward meeting someone / a relationship</p>
+</li>
+</ul>
+</div></div>
+</section>
+<section class="chapter" id="ch-7" aria-labelledby="ch-7-t" data-chapter="7">
+<h2 class="bamboo reveal" id="ch-7-t"><span class="num" aria-hidden="true"><span class="ember ">VII</span></span><span class="sr-only">Chapter 7: </span><span class="ember title">What to do after a fall</span></h2>
+<div class="card reveal"><div class="card-inner"><blockquote>
+<p>&quot;For a righteous man falls seven times and rises again.&quot; (Proverbs 24:16)</p>
+</blockquote>
+<p>The verse doesn't say the righteous man doesn't fall. It says he <strong>rises</strong>. A fall is not the end of the road. It's information.</p>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>What not to do</h3><ul>
+<li>❌ Don't punish yourself, and don't slide into &quot;everything's ruined anyway&quot;</li>
+<li>❌ Don't keep going &quot;because I already fell&quot;. The binge is the real damage.</li>
+<li>❌ Don't hide from your partner</li>
+</ul>
+</div></div>
+<div class="card reveal key" id=card-reset><div class="card-inner"><h3><span class="ember card-title">What to do: the 24-hour reset</span></h3><ol>
+<li><strong>Stop now.</strong> Close the screen and leave the room.</li>
+<li><strong>Shower, food, sleep.</strong> Bring your body back into balance.</li>
+<li><strong>Tell your partner</strong>, briefly and honestly.</li>
+<li><strong>Analyze without judgment</strong> (template below).</li>
+<li><strong>Update the plan:</strong> what hole in the system showed up, and how do you close it?</li>
+<li><strong>Start fresh tomorrow morning</strong>, with intention.</li>
+</ol>
+<button class="btn btn-soft" data-open-reset>I fell. Let's start a gentle reset</button></div></div>
+<div class="card reveal"><div class="card-inner"><h3>Relapse log template</h3><pre><code>Date and time:
+Where I was / which device:
+HALT - hungry / angry / lonely / tired:
+What happened in the hours before:
+The moment when I could still have stopped:
+What blocked / didn't block:
+What I'm changing in the plan from today:
+A kind sentence to myself:
+</code></pre>
+<blockquote>
+<p>&quot;Do not trust yourself until the day you die.&quot; (Pirkei Avot 2:4). Even after a long streak, keep the system in place. A good streak is not a reason to lower your defenses.</p>
+</blockquote>
+</div></div>
+</section>
+<section class="chapter" id="ch-8" aria-labelledby="ch-8-t" data-chapter="8">
+<h2 class="bamboo reveal" id="ch-8-t"><span class="num" aria-hidden="true"><span class="ember ">VIII</span></span><span class="sr-only">Chapter 8: </span><span class="ember title">Tracking and progress</span></h2>
+<div class="card reveal"><div class="card-inner"><p>Don't measure only the streak. Also measure <strong>how quickly you get back up</strong> and how much your plan improves.</p>
+</div></div>
+<div class="card reveal key" id="tracker-card"><div class="card-inner"><h3><span class="ember card-title">My streak</span></h3><p class="muted">The plan's table becomes a live tracker here. Everything is stored only on your device.</p><div id="tracker"></div><p><strong>Milestones:</strong> 7 days · 30 days · 90 days. Celebrate each one in a healthy way.</p>
+</div></div>
+<div class="card reveal" id="stats-card"><div class="card-inner"><h3><span class="ember card-title">Private insights</span></h3><p class="muted">Patterns, not judgment. These numbers are computed and stored only on this device.</p><div id="stats"></div></div></div>
+<div class="card reveal"><div class="card-inner"><h3>Weekly review questions</h3><ol>
+<li>How many clean days did I have this week?</li>
+<li>When was the urge strongest, and why?</li>
+<li>What worked for me in the emergency protocol?</li>
+<li>How did I sleep? Train? Eat?</li>
+<li>Who was I really connected with this week?</li>
+<li>What one improvement am I bringing into next week?</li>
+</ol>
+</div></div>
+</section>
+<section class="chapter" id="ch-9" aria-labelledby="ch-9-t" data-chapter="9">
+<h2 class="bamboo reveal" id="ch-9-t"><span class="num" aria-hidden="true"><span class="ember ">IX</span></span><span class="sr-only">Chapter 9: </span><span class="ember title">Tools and resources</span></h2>
+<div class="card reveal"><div class="card-inner"><ul>
+<li><strong><a href="https://one.one.one.one/family/">Cloudflare for Families</a></strong>: free DNS filtering (<code>1.1.1.3</code> / <code>1.0.0.3</code>).</li>
+<li><strong><a href="https://www.covenanteyes.com/">Covenant Eyes</a></strong>: accountability and filtering software (paid).</li>
+<li><strong><a href="https://guardyoureyes.com/">Guard Your Eyes (GYE)</a></strong>: a Jewish community and resources for struggling with porn and sexual addiction.</li>
+<li><strong><a href="https://netfree.link/">NetFree</a></strong>: an Israeli internet filtering provider.</li>
+<li><strong>ERAN, emotional first aid: 1201</strong> (in Israel). Available to talk at any hour.</li>
+</ul>
+</div></div>
+<div class="card reveal"><div class="card-inner"><h3>When to seek professional help</h3><p>If it feels <strong>compulsive</strong> (&quot;I can't stop even though I really want to&quot;), if it's hurting your mood, sleep, work or relationships, or if there is despair, anxiety or depression, <strong>reach out to a professional</strong>: a psychologist, a therapist who specializes in addictions, or your family doctor. That isn't failure. It's an act of strength. If you have thoughts of harming yourself, contact ERAN (1201) or Magen David Adom (101) right away in Israel, or your local emergency number wherever you are.</p>
+</div></div>
+</section>
+<section class="chapter" id="ch-10" aria-labelledby="ch-10-t" data-chapter="10">
+<h2 class="bamboo reveal" id="ch-10-t"><span class="num" aria-hidden="true"><span class="ember ">X</span></span><span class="sr-only">Chapter 10: </span><span class="ember title">FAQ</span></h2>
+<div class="card reveal"><div class="card-inner"><p><strong>I fell after a long streak. Is all my progress erased?</strong>
+No. The clean days built muscles in you: habits, awareness and tools. One fall doesn't erase them. What matters is what you do in the next 24 hours.</p>
+<p><strong>I have nocturnal emissions (wet dreams). Is that a fall?</strong>
+No. It's a natural process that isn't under your control. The plan is about what is within your choice.</p>
+<p><strong>Can I do this alone?</strong>
+You can start alone, but almost everyone who succeeds over time does it with people beside them. Shame grows in the dark. Find one person you can talk to.</p>
+<p><strong>How long does it take?</strong>
+There's no magic number. 90 days is a good first goal, but the real goal is to build a life in which you need this escape less.</p>
+<p><strong>What if I just have no strength tonight?</strong>
+That's exactly the moment for the emergency protocol. Don't decide anything. Leave the room, eat something and go to sleep. Tomorrow you'll be stronger.</p>
+</div></div>
+</section>
+<section class="chapter closing" aria-label="Closing"><img class="divider reveal" src="assets/img/divider.webp" alt="" width="1200" height="165" loading="lazy"><div class="card reveal key"><div class="card-inner closing-inner"><blockquote>
+<p>&quot;Better to be slow to anger than a mighty warrior, and to rule one's spirit than to conquer a city.&quot; (Proverbs 16:32)</p>
+</blockquote>
+<p><strong>You are not your habit. You are the one who chooses, again and again, to rise.</strong> 💪</p>
+<p><em>Feel free to copy, share and adapt it for yourself.</em></p>
+</div></div><p class="privacy-note">🔒 This app sends no data anywhere. Your streak, checklists and log are stored only in this device's browser.</p></section></template>
+<template id="tpl-nav-he"><li><a href="#ch-1" data-nav="1"><span class="nav-num">א׳</span>למה</a></li>
+<li><a href="#ch-2" data-nav="2"><span class="nav-num">ב׳</span>הבנת הדחף</a></li>
+<li><a href="#ch-3" data-nav="3"><span class="nav-num">ג׳</span>מערכת הגנה טכנית</a></li>
+<li><a href="#ch-4" data-nav="4"><span class="nav-num">ד׳</span>שגרה יומית</a></li>
+<li><a href="#ch-5" data-nav="5"><span class="nav-num">ה׳</span>פרוטוקול חירום: &quot;קשה לי&quot;</a></li>
+<li><a href="#ch-6" data-nav="6"><span class="nav-num">ו׳</span>קשר וחברה</a></li>
+<li><a href="#ch-7" data-nav="7"><span class="nav-num">ז׳</span>מה עושים אחרי נפילה</a></li>
+<li><a href="#ch-8" data-nav="8"><span class="nav-num">ח׳</span>מעקב והתקדמות</a></li>
+<li><a href="#ch-9" data-nav="9"><span class="nav-num">ט׳</span>כלים ומשאבים</a></li>
+<li><a href="#ch-10" data-nav="10"><span class="nav-num">י׳</span>שאלות נפוצות</a></li></template>
+<template id="tpl-nav-en"><li><a href="#ch-1" data-nav="1"><span class="nav-num">I</span>Why</a></li>
+<li><a href="#ch-2" data-nav="2"><span class="nav-num">II</span>Understanding the urge</a></li>
+<li><a href="#ch-3" data-nav="3"><span class="nav-num">III</span>Technical defense system</a></li>
+<li><a href="#ch-4" data-nav="4"><span class="nav-num">IV</span>Daily routine</a></li>
+<li><a href="#ch-5" data-nav="5"><span class="nav-num">V</span>Emergency protocol: &quot;It&#x27;s hard right now&quot;</a></li>
+<li><a href="#ch-6" data-nav="6"><span class="nav-num">VI</span>Connection and community</a></li>
+<li><a href="#ch-7" data-nav="7"><span class="nav-num">VII</span>What to do after a fall</a></li>
+<li><a href="#ch-8" data-nav="8"><span class="nav-num">VIII</span>Tracking and progress</a></li>
+<li><a href="#ch-9" data-nav="9"><span class="nav-num">IX</span>Tools and resources</a></li>
+<li><a href="#ch-10" data-nav="10"><span class="nav-num">X</span>FAQ</a></li></template>
+<template id="tpl-steps-he"><ol class="steps">
+<li><strong>עצור ותן לזה שם.</strong> תגיד בקול: &quot;זה דחף. הוא יעבור.&quot;</li>
+<li><strong>צא מהחדר.</strong> עכשיו, בלי ויכוח. שנה מקום, ועדיף לצאת החוצה.</li>
+<li><strong>20 שכיבות סמיכה</strong> (או סקוואטים או ריצה במקום). תוציא את האנרגיה מהגוף.</li>
+<li><strong>כלל 10 הדקות:</strong> &quot;אני לא מחליט עכשיו. אני מחכה 10 דקות.&quot; בדרך כלל הגל יורד.</li>
+<li><strong>גלישה על הגל (Urge Surfing):</strong> נשימה איטית, 4 שניות שאיפה ו-6 שניות נשיפה. שים לב איפה בגוף אתה מרגיש את הדחף ופשוט תסתכל עליו, בלי לפעול.</li>
+<li><strong>תתקשר למישהו.</strong> לא חייבים לספר על מה מדובר. אפשר לכתוב לשותף: &quot;קשה לי עכשיו&quot;.</li>
+<li><strong>תבדוק HALT:</strong> אני רעב? כועס? בודד? עייף? תטפל בצורך האמיתי.</li>
+<li><strong>תקרא את ה&quot;למה&quot; שלך</strong> (סעיף 1).</li>
+<li><strong>פרק או מזמור תהילים / תפילה קצרה במילים שלך.</strong></li>
+</ol>
+</template>
+<template id="tpl-steps-en"><ol class="steps">
+<li><strong>Stop and name it.</strong> Say out loud: &quot;This is an urge. It will pass.&quot;</li>
+<li><strong>Leave the room.</strong> Now, no arguing. Change places, ideally go outside.</li>
+<li><strong>20 push-ups</strong> (or squats, or running in place). Get the energy out of your body.</li>
+<li><strong>The 10-minute rule:</strong> &quot;I'm not deciding now. I'm waiting 10 minutes.&quot; Usually the wave subsides.</li>
+<li><strong>Urge surfing:</strong> slow breathing, 4 seconds in and 6 seconds out. Notice where in your body you feel the urge and just watch it, without acting.</li>
+<li><strong>Call someone.</strong> You don't have to say what it's about. You can text your partner: &quot;It's hard for me right now.&quot;</li>
+<li><strong>Check HALT:</strong> am I hungry? angry? lonely? tired? Take care of the real need.</li>
+<li><strong>Read your &quot;why&quot;</strong> (section 1).</li>
+<li><strong>A chapter or psalm of Tehillim / a short prayer in your own words.</strong></li>
+</ol>
+</template>
 
+<button class="fab" id="fab" data-open-emergency aria-haspopup="dialog">
+  <span class="fab-flame" aria-hidden="true"></span><span data-i18n="hard">קשה לי</span>
+</button>
+
+<!-- Emergency mode -->
+<div class="emergency" id="emergency" role="dialog" aria-modal="true" aria-labelledby="em-title" hidden>
+  <div class="em-scroll">
+    <div class="em-head">
+      <h2 id="em-title"><span class="ember" data-i18n="em_title">מצב חירום: הגל הזה יעבור</span></h2>
+      <button class="icon-btn em-close" id="em-close" data-i18n-aria="em_close" aria-label="סגור מצב חירום"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <p class="em-say" data-i18n-html="em_say">תגיד בקול: <b>״זה דחף. הוא יעבור.״</b></p>
+    <div class="breath" aria-live="polite">
+      <div class="breath-circle" id="breath-circle"><span id="breath-label">שאיפה</span></div>
+      <p class="muted" data-i18n="breath_hint">נשימה איטית: 4 שניות שאיפה, 6 שניות נשיפה.</p>
+    </div>
+    <div class="timer card"><div class="card-inner">
+      <h3><span class="ember card-title" data-i18n="ten_rule">כלל 10 הדקות</span></h3>
+      <p data-i18n="ten_quote">״אני לא מחליט עכשיו. אני מחכה 10 דקות.״</p>
+      <div class="timer-ring">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" id="ring-fg" cx="60" cy="60" r="52"/></svg>
+        <output id="timer-out" aria-live="off">10:00</output>
+      </div>
+      <div class="timer-btns">
+        <button class="btn btn-ember" id="timer-start" data-i18n="t_start">התחל</button>
+        <button class="btn btn-ghost" id="timer-reset" data-i18n="t_reset">אפס</button>
+      </div>
+      <p class="timer-done" id="timer-done" data-i18n="t_done" hidden>עברו 10 דקות. כל הכבוד. הגל ירד? אם לא, עוד סבב. אתה חזק מזה.</p>
     </div></div>
-
     <div class="card"><div class="card-inner">
-      <h3>בדיקת HALT: מה באמת חסר לי?</h3>
+      <h3><span class="ember card-title" data-i18n="steps">שלב אחר שלב</span></h3>
+      <div id="steps-host"><ol class="steps">
+<li><strong>עצור ותן לזה שם.</strong> תגיד בקול: &quot;זה דחף. הוא יעבור.&quot;</li>
+<li><strong>צא מהחדר.</strong> עכשיו, בלי ויכוח. שנה מקום, ועדיף לצאת החוצה.</li>
+<li><strong>20 שכיבות סמיכה</strong> (או סקוואטים או ריצה במקום). תוציא את האנרגיה מהגוף.</li>
+<li><strong>כלל 10 הדקות:</strong> &quot;אני לא מחליט עכשיו. אני מחכה 10 דקות.&quot; בדרך כלל הגל יורד.</li>
+<li><strong>גלישה על הגל (Urge Surfing):</strong> נשימה איטית, 4 שניות שאיפה ו-6 שניות נשיפה. שים לב איפה בגוף אתה מרגיש את הדחף ופשוט תסתכל עליו, בלי לפעול.</li>
+<li><strong>תתקשר למישהו.</strong> לא חייבים לספר על מה מדובר. אפשר לכתוב לשותף: &quot;קשה לי עכשיו&quot;.</li>
+<li><strong>תבדוק HALT:</strong> אני רעב? כועס? בודד? עייף? תטפל בצורך האמיתי.</li>
+<li><strong>תקרא את ה&quot;למה&quot; שלך</strong> (סעיף 1).</li>
+<li><strong>פרק או מזמור תהילים / תפילה קצרה במילים שלך.</strong></li>
+</ol>
+</div>
+    </div></div>
+    <div class="card"><div class="card-inner">
+      <h3 data-i18n="halt_title">בדיקת HALT: מה באמת חסר לי?</h3>
       <ul class="halt-grid">
-        <li><b>רעב?</b> לאכול משהו אמיתי</li>
-        <li><b>כועס או לחוץ?</b> תנועה, לדבר, לכתוב</li>
-        <li><b>בודד?</b> שיחה עם אדם אמיתי</li>
-        <li><b>עייף?</b> ללכת לישון</li>
+        <li data-i18n-html="halt_h"><b>רעב?</b> לאכול משהו אמיתי</li>
+        <li data-i18n-html="halt_a"><b>כועס או לחוץ?</b> תנועה, לדבר, לכתוב</li>
+        <li data-i18n-html="halt_l"><b>בודד?</b> שיחה עם אדם אמיתי</li>
+        <li data-i18n-html="halt_t"><b>עייף?</b> ללכת לישון</li>
       </ul>
     </div></div>
-
     <figure class="em-quote" id="em-quote"><blockquote></blockquote><figcaption></figcaption></figure>
     <div class="em-actions">
-      <button class="btn btn-soft" id="em-another">עוד מילה של חיזוק</button>
-      <button class="btn btn-ember" id="em-done">עברתי את הגל 💪</button>
+      <button class="btn btn-soft" id="em-another" data-i18n="em_another">עוד מילה של חיזוק</button>
+      <button class="btn btn-ember" id="em-done" data-i18n="em_done">עברתי את הגל 💪</button>
     </div>
   </div>
 </div>
@@ -439,55 +1042,71 @@ HALT - רעב / כעס / בודד / עייף:
 <!-- Kind reset flow -->
 <dialog class="sheet" id="reset-dialog" aria-labelledby="reset-title">
   <form method="dialog" id="reset-form">
-    <h2 id="reset-title"><span class="ember">קמים. ״כי שבע יפול צדיק וקם״</span></h2>
-    <p>נפילה היא לא סוף הדרך. היא מידע. בוא נבין מה קרה ונתחיל את 24 השעות של האיפוס.</p>
+    <h2 id="reset-title"><span class="ember" data-i18n="r_title">קמים. ״כי שבע יפול צדיק וקם״</span></h2>
+    <p data-i18n="r_intro">נפילה היא לא סוף הדרך. היא מידע. בוא נבין מה קרה ונתחיל את 24 השעות של האיפוס.</p>
     <fieldset>
-      <legend>מה היה שם? (אפשר לבחור כמה)</legend>
-      <div class="chips">
-        <label><input type="checkbox" name="trigger" value="רעב"><span>רעב</span></label>
-        <label><input type="checkbox" name="trigger" value="כעס/לחץ"><span>כעס / לחץ</span></label>
-        <label><input type="checkbox" name="trigger" value="בדידות"><span>בדידות</span></label>
-        <label><input type="checkbox" name="trigger" value="עייפות"><span>עייפות</span></label>
-        <label><input type="checkbox" name="trigger" value="שעמום"><span>שעמום</span></label>
-        <label><input type="checkbox" name="trigger" value="טלפון בלילה"><span>טלפון בלילה</span></label>
-        <label><input type="checkbox" name="trigger" value="לבד בבית"><span>לבד בבית</span></label>
-        <label><input type="checkbox" name="trigger" value="אחר"><span>אחר</span></label>
-      </div>
+      <legend data-i18n="r_what">מה היה שם? (אפשר לבחור כמה)</legend>
+      <div class="chips" id="trigger-chips"></div>
     </fieldset>
-    <label class="field">הרגע שבו עוד יכולתי לעצור:<textarea name="moment" rows="2"></textarea></label>
-    <label class="field">מה אני משנה בתוכנית מהיום:<textarea name="change" rows="2"></textarea></label>
-    <label class="field">משפט חמלה לעצמי:<textarea name="kind" rows="2" placeholder="למשל: אני לומד, ואני קם."></textarea></label>
+    <label class="field"><span data-i18n="r_moment">הרגע שבו עוד יכולתי לעצור:</span><textarea name="moment" rows="2"></textarea></label>
+    <label class="field"><span data-i18n="r_change">מה אני משנה בתוכנית מהיום:</span><textarea name="change" rows="2"></textarea></label>
+    <label class="field"><span data-i18n="r_kind">משפט חמלה לעצמי:</span><textarea name="kind" rows="2" data-i18n-ph="r_kind_ph" placeholder="למשל: אני לומד, ואני קם."></textarea></label>
     <div class="sheet-btns">
-      <button class="btn btn-ember" value="save">שמור והתחל איפוס</button>
-      <button class="btn btn-ghost" value="cancel" formnovalidate>לא עכשיו</button>
+      <button class="btn btn-ember" value="save" data-i18n="r_save">שמור והתחל איפוס</button>
+      <button class="btn btn-ghost" value="cancel" formnovalidate data-i18n="r_cancel">לא עכשיו</button>
     </div>
+  </form>
+</dialog>
+
+<!-- Share -->
+<dialog class="sheet" id="share-dialog" aria-labelledby="share-title">
+  <form method="dialog">
+    <h2 id="share-title"><span class="ember" data-i18n="sh_title">שתף את הרצף עם השותף שלך</span></h2>
+    <p class="muted small" data-i18n="sh_privacy">נשלח רק מספר הימים והקישור לאפליקציה. בלי טריגרים, בלי יומן, בלי שום פרט אישי.</p>
+    <blockquote class="share-preview" id="share-preview" dir="auto"></blockquote>
+    <div class="sheet-btns share-btns">
+      <button class="btn btn-ember" type="button" id="share-native" data-i18n="sh_native" hidden>שתף…</button>
+      <button class="btn btn-soft" type="button" id="share-copy" data-i18n="sh_copy">העתק הודעה</button>
+      <a class="btn btn-soft" id="share-wa" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-soft" id="share-tg" target="_blank" rel="noopener">Telegram</a>
+    </div>
+    <div class="sheet-btns"><button class="btn btn-ghost" value="close" data-i18n="close">סגור</button></div>
   </form>
 </dialog>
 
 <!-- Settings / privacy -->
 <dialog class="sheet" id="settings-dialog" aria-labelledby="settings-title">
   <form method="dialog">
-    <h2 id="settings-title">הגדרות ופרטיות</h2>
-    <fieldset>
-      <legend>תזכורת ערב</legend>
-      <label class="switch"><input type="checkbox" id="rem-on"><span>להזכיר לי לעשות צ׳ק-אין</span></label>
-      <label class="field">שעה: <input type="time" id="rem-time" value="21:30"></label>
-      <p class="muted small">התזכורת מופיעה כשהאפליקציה פתוחה או פועלת ברקע בדפדפן (אין שרת ואין שליחת מידע). בחלק מהמכשירים צריך להתקין את האפליקציה למסך הבית.</p>
+    <h2 id="settings-title" data-i18n="settings">הגדרות ופרטיות</h2>
+    <fieldset class="partner-card">
+      <legend data-i18n="p_title">שותף אחריות</legend>
+      <p class="muted small" data-i18n="p_note">אופציונלי. השם נשמר רק במכשיר שלך ולא נשלח לשום מקום.</p>
+      <label class="field"><span data-i18n="p_name">שם השותף:</span><input type="text" id="p-name" autocomplete="off" maxlength="40"></label>
+      <label class="switch"><input type="checkbox" id="p-weekly"><span data-i18n="p_weekly">להזכיר לי פעם בשבוע לשלוח לו עדכון</span></label>
+      <label class="field"><span data-i18n="p_day">ביום:</span><select id="p-day"></select></label>
+      <button class="btn btn-soft" type="button" data-open-share data-i18n="share">שתף רצף</button>
     </fieldset>
     <fieldset>
-      <legend>הנתונים שלך</legend>
-      <p class="muted small">הכל נשמר רק במכשיר הזה (localStorage). שום דבר לא נשלח לשום מקום.</p>
+      <legend data-i18n="rem_title">תזכורת ערב</legend>
+      <label class="switch"><input type="checkbox" id="rem-on"><span data-i18n="rem_on">להזכיר לי לעשות צ׳ק-אין</span></label>
+      <label class="field"><span data-i18n="rem_time">שעה:</span><input type="time" id="rem-time" value="21:30"></label>
+      <p class="muted small" data-i18n="rem_note">התזכורת מופיעה כשהאפליקציה פתוחה או פועלת ברקע בדפדפן (אין שרת ואין שליחת מידע). בחלק מהמכשירים צריך להתקין את האפליקציה למסך הבית.</p>
+    </fieldset>
+    <fieldset>
+      <legend data-i18n="data_title">הנתונים שלך</legend>
+      <p class="muted small" data-i18n="data_note">הכל נשמר רק במכשיר הזה (localStorage). שום דבר לא נשלח לשום מקום.</p>
       <div class="sheet-btns">
-        <button class="btn btn-soft" type="button" id="export-btn">ייצוא גיבוי (JSON)</button>
-        <label class="btn btn-soft file-btn">ייבוא גיבוי<input type="file" id="import-file" accept="application/json" hidden></label>
-        <button class="btn btn-danger" type="button" id="wipe-btn">מחיקת כל הנתונים</button>
+        <button class="btn btn-soft" type="button" id="export-btn" data-i18n="export">ייצוא גיבוי (JSON)</button>
+        <label class="btn btn-soft file-btn"><span data-i18n="import">ייבוא גיבוי</span><input type="file" id="import-file" accept="application/json" hidden></label>
+        <button class="btn btn-danger" type="button" id="wipe-btn" data-i18n="wipe">מחיקת כל הנתונים</button>
       </div>
     </fieldset>
-    <div class="sheet-btns"><button class="btn btn-ember" value="close">סגור</button></div>
+    <div class="sheet-btns"><button class="btn btn-ember" value="close" data-i18n="close">סגור</button></div>
   </form>
 </dialog>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="js/i18n.js" defer></script>
 <script src="js/app.js" defer></script>
 </body>
 </html>
