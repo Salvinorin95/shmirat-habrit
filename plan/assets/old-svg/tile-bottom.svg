@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 46" width="1100" height="46" role="img" aria-label=""><title></title><defs>
+<linearGradient id="ember" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#fff6c2"/><stop offset=".28" stop-color="#ffd04a"/>
+  <stop offset=".6" stop-color="#ff8a1c"/><stop offset="1" stop-color="#e0321a"/></linearGradient>
+<linearGradient id="emberGold" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#fffbe0"/><stop offset=".5" stop-color="#ffd56b"/><stop offset="1" stop-color="#ff9a2e"/></linearGradient>
+<linearGradient id="coal" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#3a2a22"/><stop offset=".5" stop-color="#241914"/><stop offset="1" stop-color="#170f0c"/></linearGradient>
+<radialGradient id="coalGlow" cx=".5" cy=".55" r=".6">
+  <stop offset="0" stop-color="#ff7a1a" stop-opacity=".55"/><stop offset=".55" stop-color="#c2310f" stop-opacity=".18"/>
+  <stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="marble" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#5fe0d0"/><stop offset=".35" stop-color="#1fb5a6"/>
+  <stop offset=".75" stop-color="#139689"/><stop offset="1" stop-color="#0e7c7b"/></linearGradient>
+<linearGradient id="marbleShine" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".18" stop-color="#fff" stop-opacity=".08"/>
+  <stop offset="1" stop-color="#003c3a" stop-opacity=".25"/></linearGradient>
+<linearGradient id="bambooH" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#5b7d1e"/><stop offset=".18" stop-color="#c9d86a"/><stop offset=".34" stop-color="#f3e9a0"/>
+  <stop offset=".55" stop-color="#9fb83f"/><stop offset=".85" stop-color="#5f8424"/><stop offset="1" stop-color="#3b5716"/></linearGradient>
+<linearGradient id="bambooV" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#5b7d1e"/><stop offset=".18" stop-color="#c9d86a"/><stop offset=".34" stop-color="#f3e9a0"/>
+  <stop offset=".55" stop-color="#9fb83f"/><stop offset=".85" stop-color="#5f8424"/><stop offset="1" stop-color="#3b5716"/></linearGradient>
+<linearGradient id="nodeH" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#4a6618"/><stop offset=".35" stop-color="#e6d98a"/><stop offset=".6" stop-color="#7c9a2c"/><stop offset="1" stop-color="#2f4711"/></linearGradient>
+<linearGradient id="nodeV" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#4a6618"/><stop offset=".35" stop-color="#e6d98a"/><stop offset=".6" stop-color="#7c9a2c"/><stop offset="1" stop-color="#2f4711"/></linearGradient>
+<linearGradient id="rope" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#e8c98c"/><stop offset="1" stop-color="#9a733d"/></linearGradient>
+<filter id="fire" x="-20%" y="-60%" width="140%" height="220%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.02 0.09" numOctaves="3" seed="7" result="n"/>
+  <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 .97  0 0 0 0 .75  2.2 0 0 0 -1.05" result="hot"/>
+  <feComposite in="hot" in2="SourceGraphic" operator="in" result="hotIn"/>
+  <feColorMatrix in="n" type="matrix" values="0 0 0 0 .55  0 0 0 0 .08  0 0 0 0 .02  0 -2.4 0 0 1.05" result="dark"/>
+  <feComposite in="dark" in2="SourceGraphic" operator="in" result="darkIn"/>
+  <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="b1"/>
+  <feFlood flood-color="#ffb020"/><feComposite in2="b1" operator="in" result="g1"/>
+  <feGaussianBlur in="SourceAlpha" stdDeviation="10" result="b2"/>
+  <feFlood flood-color="#ff5a0a" flood-opacity=".9"/><feComposite in2="b2" operator="in" result="g2"/>
+  <feGaussianBlur in="SourceAlpha" stdDeviation="22" result="b3"/>
+  <feFlood flood-color="#ff2a00" flood-opacity=".55"/><feComposite in2="b3" operator="in" result="g3"/>
+  <feMerge><feMergeNode in="g3"/><feMergeNode in="g2"/><feMergeNode in="g1"/>
+    <feMergeNode in="SourceGraphic"/><feMergeNode in="darkIn"/><feMergeNode in="hotIn"/></feMerge>
+</filter>
+<filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+  <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b"/>
+  <feFlood flood-color="#ff8a1c" flood-opacity=".85"/><feComposite in2="b" operator="in" result="g"/>
+  <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+<filter id="spark" x="-200%" y="-200%" width="500%" height="500%">
+  <feGaussianBlur stdDeviation="2.2"/>
+</filter>
+<filter id="veins" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.006 0.022" numOctaves="4" seed="11" result="t"/>
+  <feColorMatrix in="t" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  1 0 0 0 0" result="a"/>
+  <feComponentTransfer in="a"><feFuncA type="table" tableValues="0 0 0 0 0 .05 .9 .05 0 0 0 0 0"/></feComponentTransfer>
+  <feComposite in2="SourceGraphic" operator="in"/>
+</filter>
+<filter id="grain" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3" result="t"/>
+  <feColorMatrix in="t" type="matrix" values="0 0 0 0 .3  0 0 0 0 .22  0 0 0 0 .12  0 0 0 -.9 .55" result="g"/>
+  <feComposite in="g" in2="SourceGraphic" operator="in"/>
+</filter>
+<filter id="drop" x="-10%" y="-10%" width="120%" height="140%">
+  <feGaussianBlur in="SourceAlpha" stdDeviation="3"/><feOffset dy="3" result="o"/>
+  <feFlood flood-color="#3b2a14" flood-opacity=".45"/><feComposite in2="o" operator="in" result="s"/>
+  <feMerge><feMergeNode in="s"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs><clipPath id="bc"><path d="M0 0 L1100 0 L1100 28 Q1100 46 1082 46 L18 46 Q0 46 0 28Z"/></clipPath><g clip-path="url(#bc)"><rect x="0" y="0" width="1100" height="46" fill="#7d6c50"/><rect x="1.5" y="1.5" width="119.0" height="43.0" rx="4" fill="#bfae8b"/><rect x="1.5" y="1.5" width="119.0" height="3" rx="1.5" fill="#fff" opacity=".22"/><rect x="1.5" y="41.5" width="119.0" height="3" fill="#5a4a33" opacity=".25"/><path d="M28.5 37.9 l-3.7 4.5 l6.0 3.2" stroke="#6e5c40" stroke-width="1" fill="none" opacity=".5"/><rect x="123.5" y="1.5" width="158.0" height="43.0" rx="4" fill="#c9b994"/><rect x="123.5" y="1.5" width="158.0" height="3" rx="1.5" fill="#fff" opacity=".22"/><rect x="123.5" y="41.5" width="158.0" height="3" fill="#5a4a33" opacity=".25"/><rect x="284.5" y="1.5" width="90.0" height="43.0" rx="4" fill="#9e8b6a"/><rect x="284.5" y="1.5" width="90.0" height="3" rx="1.5" fill="#fff" opacity=".22"/><rect x="284.5" y="41.5" width="90.0" height="3" fill="#5a4a33" opacity=".25"/><path d="M353.6 23.2 l6.0 -3.2 l-2.1 2.4" stroke="#6e5c40" stroke-width="1" fill="none" opacity=".5"/><rect x="377.5" y="1.5" width="120.0" height="43.0" rx="4" fill="#9e8b6a"/><rect x="377.5" y="1.5" width="120.0" height="3" rx="1.5" fill="#fff" opacity=".22"/><rect x="377.5" y="41.5" width="120.0" height="3" fill="#5a4a33" opacity=".25"/><path d="M404.5 8.8 l-5.4 0.6 l-0.7 5.5" stroke="#6e5c40" stroke-width="1" fill="none" opacity=".5"/><rect x="500.5" y="1.5" width="96.0" height="43.0" rx="4" fill="#b9a98a"/><rect x="500.5" y="1.5" width="96.0" height="3" rx="1.5" fill="#fff" opacity=".22"/><rect x="500.5" y="41.5" width="96.0" height="3" fill="#5a4a33" opacity=".25"/><rect x="599.5" y="1.5" width="114.0" height="43.0" rx="4" fill="#bfae8b"/><rect x="599.5" y="1.5" width="114.0" height="3" rx="1.5" fill="#fff" opacity=".22"/><rect x="599.5" y="41.5" width="114.0" height="3" fill="#5a4a33" opacity=".25"/><rect x="716.5" y="1.5" width="99.0" height="43.0" rx="4" fill="#9e8b6a"/><rect x="716.5" y="1.5" width="99.0" height="3" rx="1.5" fill="#fff" opacity=".22"/><rect x="716.5" y="41.5" width="99.0" height="3" fill="#5a4a33" opacity=".25"/><rect x="818.5" y="1.5" width="155.0" height="43.0" rx="4" fill="#b9a98a"/><rect x="818.5" y="1.5" width="155.0" height="3" rx="1.5" fill="#fff" opacity=".22"/><rect x="818.5" y="41.5" width="155.0" height="3" fill="#5a4a33" opacity=".25"/><rect x="976.5" y="1.5" width="122.0" height="43.0" rx="4" fill="#b9a98a"/><rect x="976.5" y="1.5" width="122.0" height="3" rx="1.5" fill="#fff" opacity=".22"/><rect x="976.5" y="41.5" width="122.0" height="3" fill="#5a4a33" opacity=".25"/><rect x="0" y="0" width="1100" height="46" filter="url(#grain)" fill="#000" opacity=".9"/></g><clipPath id="m568785465"><rect x="22" y="0" width="1056" height="18" rx="6"/></clipPath><g clip-path="url(#m568785465)"><rect x="22" y="0" width="1056" height="18" fill="url(#marble)"/><rect x="22" y="0" width="1056" height="18" fill="#fff" filter="url(#veins)" opacity=".75"/><rect x="22" y="0" width="1056" height="18" fill="url(#marbleShine)"/></g><rect x="22.75" y="0.75" width="1054.5" height="16.5" rx="6" fill="none" stroke="#0a5655" stroke-width="1.5" opacity=".7"/><rect x="22" y="0" width="1056" height="5" fill="#0e7c7b"/><circle cx="510.0" cy="32" r="4" fill="#ff9a2e" filter="url(#softGlow)"/><circle cx="550.0" cy="32" r="4" fill="#ff9a2e" filter="url(#softGlow)"/><circle cx="590.0" cy="32" r="4" fill="#ff9a2e" filter="url(#softGlow)"/></svg>
