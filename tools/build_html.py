@@ -16,7 +16,7 @@ L = {
          "stats_title": "תובנות פרטיות", "stats_note": "דפוסים, לא שיפוט. הנתונים האלה מחושבים ונשמרים רק במכשיר הזה.",
          "btn_em": "לפתוח מצב חירום עכשיו", "btn_reset": "נפלתי. מתחילים איפוס בעדינות",
          "intro": "הקדמה", "closing": "סיום",
-         "privacy": "🔒 האפליקציה לא שולחת שום מידע. הרצף, הצ׳קליסטים והיומן נשמרים רק בדפדפן של המכשיר הזה."},
+         "privacy": "🔒 הרצף, הצ׳קליסטים והיומן נשמרים רק בדפדפן של המכשיר הזה ולא נשלחים לאף אחד. האתר סופר כניסות באמצעות GoatCounter, מונה בקוד פתוח וללא עוגיות, שלא רואה את מה שאתה כותב באפליקציה."},
   "en": {"file": "plan/README.en.md", "nums": ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"], "num_suffix": "",
          "keys": {"why": 'My "why"', "emergency": "Emergency card", "reset": "What to do: the 24-hour reset"},
          "table": "Streak table", "steps": "Step by step", "chapter": "Chapter",
@@ -24,7 +24,7 @@ L = {
          "stats_title": "Private insights", "stats_note": "Patterns, not judgment. These numbers are computed and stored only on this device.",
          "btn_em": "Open emergency mode now", "btn_reset": "I fell. Let's start a gentle reset",
          "intro": "Introduction", "closing": "Closing",
-         "privacy": "🔒 This app sends no data anywhere. Your streak, checklists and log are stored only in this device's browser."},
+         "privacy": "🔒 Your streak, checklists and log are stored only in this device's browser and never sent to anyone. The site counts page views with GoatCounter, an open-source counter with no cookies, which never sees what you enter in the app."},
 }
 
 def ember(s, cls=""):

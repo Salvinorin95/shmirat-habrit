@@ -32,7 +32,9 @@
 אחרי ההתקנה האפליקציה נפתחת במסך מלא ועובדת גם אופליין.
 
 ## פרטיות
-אין מעקב, אין אנליטיקס, אין שרת ואין חשבון. כל הנתונים (רצף, יומן, טריגרים, שם השותף) נשמרים **רק בדפדפן של המכשיר שלך**. בשיתוף נשלחים רק מספר הימים והקישור לאפליקציה.
+הנתונים האישיים (רצף, יומן, טריגרים, שם השותף) נשמרים **רק בדפדפן של המכשיר שלך** ולא נשלחים לאף אחד. בשיתוף נשלחים רק מספר הימים והקישור לאפליקציה, ורק כשאתה לוחץ על שיתוף.
+
+האתר משתמש ב-[GoatCounter](https://www.goatcounter.com/), מונה כניסות בקוד פתוח וללא עוגיות, שסופר רק צפיות בדף (עמוד, מדינה, מקור הגעה, סוג דפדפן וגודל מסך). הוא לא עוקב אחרי אנשים באתרים אחרים ולא רואה את מה שאתה מזין באפליקציה. אין חשבון.
 
 ## הבהרה
 זו תוכנית לעזרה עצמית ולא ייעוץ רפואי או טיפולי. אם ההתנהגות מרגישה כפייתית, פוגעת בחיים, או שמצב הרוח שלך ירוד, פנה לאיש מקצוע (פסיכולוג, מטפל או רופא). במצב חירום רגשי בישראל: ער"ן 1201 או מד"א 101.
@@ -75,7 +77,9 @@
 Once installed it opens full screen and works without internet.
 
 ## Privacy
-No tracking, no analytics, no server, no account. Everything (streak, log, triggers, partner name) is stored **only in your device's browser**. Sharing sends just your day count and the app link.
+Your personal data (streak, log, triggers, partner name) is stored **only in your device's browser** and is never sent to anyone. Sharing sends just your day count and the app link, and only when you tap share.
+
+The site uses [GoatCounter](https://www.goatcounter.com/), an open-source counter with no cookies, that only counts page views (page, country, referrer, browser and screen size). It doesn't track you across other sites and never sees what you enter in the app. No account.
 
 ## Disclaimer
 This is a self-help plan, not medical or therapeutic advice. If the behavior feels compulsive, is hurting your life, or your mood is low, please reach out to a professional (psychologist, therapist or doctor). In an emotional emergency: in Israel, ERAN 1201 or Magen David Adom 101; elsewhere, your local emergency number.

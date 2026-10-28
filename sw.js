@@ -1,5 +1,5 @@
 // Offline cache for the static app. Bump VERSION after changing files.
-const VERSION = "shmira-v2.0.0";
+const VERSION = "shmira-v2.1.0";
 const SHELL = [
   "./", "index.html", "css/app.css", "js/app.js", "manifest.json",
   "assets/fonts/frank-ruhl-900.woff2", "assets/fonts/secular-one.woff2", "assets/fonts/heebo-var.woff2", "assets/fonts/cinzel-800.woff2", "js/i18n.js",

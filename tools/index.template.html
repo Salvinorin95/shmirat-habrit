@@ -199,11 +199,11 @@
       <legend data-i18n="rem_title">תזכורת ערב</legend>
       <label class="switch"><input type="checkbox" id="rem-on"><span data-i18n="rem_on">להזכיר לי לעשות צ׳ק-אין</span></label>
       <label class="field"><span data-i18n="rem_time">שעה:</span><input type="time" id="rem-time" value="21:30"></label>
-      <p class="muted small" data-i18n="rem_note">התזכורת מופיעה כשהאפליקציה פתוחה או פועלת ברקע בדפדפן (אין שרת ואין שליחת מידע). בחלק מהמכשירים צריך להתקין את האפליקציה למסך הבית.</p>
+      <p class="muted small" data-i18n="rem_note">התזכורת מופיעה כשהאפליקציה פתוחה או פועלת ברקע בדפדפן (היא פועלת מקומית במכשיר, בלי שליחת מידע). בחלק מהמכשירים צריך להתקין את האפליקציה למסך הבית.</p>
     </fieldset>
     <fieldset>
       <legend data-i18n="data_title">הנתונים שלך</legend>
-      <p class="muted small" data-i18n="data_note">הכל נשמר רק במכשיר הזה (localStorage). שום דבר לא נשלח לשום מקום.</p>
+      <p class="muted small" data-i18n="data_note">הכל נשמר רק במכשיר הזה (localStorage) ולא נשלח לאף אחד. האתר משתמש ב-GoatCounter, מונה כניסות בקוד פתוח וללא עוגיות. הוא סופר רק צפיות בדף (עמוד, מדינה, מקור הגעה, סוג דפדפן וגודל מסך), לא עוקב אחרי אנשים באתרים אחרים ולא רואה את מה שאתה מזין באפליקציה.</p>
       <div class="sheet-btns">
         <button class="btn btn-soft" type="button" id="export-btn" data-i18n="export">ייצוא גיבוי (JSON)</button>
         <label class="btn btn-soft file-btn"><span data-i18n="import">ייבוא גיבוי</span><input type="file" id="import-file" accept="application/json" hidden></label>
@@ -217,5 +217,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="js/i18n.js" defer></script>
 <script src="js/app.js" defer></script>
+<!-- GoatCounter: privacy-friendly page-view counter (no cookies) -->
+<script data-goatcounter="https://klanfer-sites.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

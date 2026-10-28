@@ -1,4 +1,4 @@
-/* שמירת הברית / Guarding the Covenant — vanilla JS, no network, all data stays in localStorage */
+/* שמירת הברית / Guarding the Covenant — vanilla JS, the app itself makes no network calls, all user data stays in localStorage (only the GoatCounter page-view counter in index.html loads externally) */
 (() => {
   "use strict";
   const $ = (s, r = document) => r.querySelector(s);
