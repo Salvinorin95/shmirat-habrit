@@ -1,5 +1,7 @@
 <div dir="rtl">
 
+<p align="left"><a href="README.en.md">English version</a></p>
+
 <div align="center">
 
 <img src="assets/hero.jpg" alt="תוכנית לשמירת הברית: להיות אדון לעצמך" width="100%">

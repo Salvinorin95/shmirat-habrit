@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>שמירת הברית · להיות אדון לעצמך</title>
+<meta name="description" content="תוכנית מעשית וחיובית לשמירת הברית, עם מעקב רצף, תובנות פרטיות ומצב חירום. A practical, positive self-mastery plan with streak tracking and an emergency mode. All data stays on your device.">
+<meta name="theme-color" content="#1fb5a6">
+<meta property="og:title" content="שמירת הברית · Guarding the Covenant">
+<meta property="og:description" content="תוכנית מעשית לשליטה עצמית ואפליקציה פרטית שעובדת אופליין. A private, offline self-mastery app.">
+<meta property="og:image" content="https://salvinorin95.github.io/shmirat-habrit/docs/social-preview.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="שמירת הברית">
+<link rel="preload" href="assets/fonts/frank-ruhl-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/heebo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/img/hero-portrait.webp" media="(max-width: 700px)">
+<link rel="preload" as="image" href="assets/img/hero-1920.webp" media="(min-width: 701px)">
+<link rel="stylesheet" href="css/app.css">
+<script>/* pick language before first paint (no flash) */
+(function(){try{var s=JSON.parse(localStorage.getItem("shmira-v1")||"{}"),l=s.lang;if(!l){var n=((navigator.languages&&navigator.languages[0])||navigator.language||"he").toLowerCase();l=(n.indexOf("he")===0||n.indexOf("iw")===0)?"he":"en";}if(l==="en"){var d=document.documentElement;d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">דלג לתוכן</a>
+
+<header class="topbar" role="banner">
+  <button class="icon-btn" id="menu-btn" data-i18n-aria="menu_open" aria-label="פתח ניווט פרקים" aria-controls="drawer" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+  </button>
+  <a class="brand" href="#top"><span class="ember" data-i18n="brand">שמירת הברית</span></a>
+  <div class="top-actions">
+    <span class="streak-pill" id="streak-pill" data-i18n-title="streak_now" title="הרצף הנוכחי"><span aria-hidden="true">🔥</span> <b id="streak-mini">0</b> <span data-i18n="days">ימים</span></span>
+    <button class="icon-btn lang-btn" id="lang-btn" data-i18n-aria="lang_switch" aria-label="Switch to English" lang="en"><span id="lang-label">EN</span></button>
+    <button class="icon-btn" id="theme-btn" data-i18n-aria="theme" aria-label="החלף מצב תאורה">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+    </button>
+  </div>
+  <div class="fuse" aria-hidden="true"><div class="fuse-fill" id="fuse"><span class="spark"></span></div></div>
+</header>
+
+<nav class="drawer" id="drawer" data-i18n-aria="chapters" aria-label="פרקי התוכנית" hidden>
+  <div class="drawer-panel">
+    <div class="drawer-head">
+      <h2 class="ember" data-i18n="chapters">פרקי התוכנית</h2>
+      <button class="icon-btn" id="drawer-close" data-i18n-aria="menu_close" aria-label="סגור ניווט"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <ol class="nav-list" id="nav-list">
+{{NAV_HE}}
+    </ol>
+    <div class="drawer-foot">
+      <a href="#ch-8" class="btn btn-soft" data-i18n="to_tracker">למעקב הרצף</a>
+      <button class="btn btn-soft" data-open-share data-i18n="share">שתף רצף</button>
+      <button class="btn btn-ghost" id="settings-btn" data-i18n="settings">הגדרות ופרטיות</button>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<section class="hero" id="top" data-i18n-aria="opening" aria-label="פתיחה">
+  <div class="hero-bg" id="hero-bg" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 700px)" srcset="assets/img/hero-portrait.webp">
+      <source media="(max-width: 1400px)" srcset="assets/img/hero-1280.webp">
+      <img src="assets/img/hero-1920.webp" alt="" width="1920" height="1080" fetchpriority="high">
+    </picture>
+  </div>
+  <canvas id="embers" aria-hidden="true"></canvas>
+  <div class="hero-content">
+    <div class="plaque">
+      <h1><span class="ember hero-title" data-i18n="hero_title">תוכנית לשמירת הברית</span></h1>
+      <p class="hero-sub"><span class="ember gold" data-i18n="hero_sub">להיות אדון לעצמך</span></p>
+    </div>
+    <figure class="hero-verse" id="daily-verse" aria-live="polite">
+      <span class="verse-label" data-i18n="verse_of_day">פסוק היום</span>
+      <blockquote></blockquote><figcaption></figcaption>
+    </figure>
+    <div class="hero-cta">
+      <a class="btn btn-ember" href="#intro" data-i18n="start">בוא נתחיל</a>
+      <button class="btn btn-glass" data-checkin data-i18n="checkin">היום שמרתי ✓</button>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#intro" data-i18n-aria="scroll" aria-label="גלול לתוכן"><span></span></a>
+</section>
+
+<div id="content">
+{{CONTENT_HE}}
+</div>
+</main>
+
+<template id="tpl-he">{{TPL_HE}}</template>
+<template id="tpl-en">{{TPL_EN}}</template>
+<template id="tpl-nav-he">{{NAV_HE}}</template>
+<template id="tpl-nav-en">{{NAV_EN}}</template>
+<template id="tpl-steps-he">{{STEPS_HE}}</template>
+<template id="tpl-steps-en">{{STEPS_EN}}</template>
+
+<button class="fab" id="fab" data-open-emergency aria-haspopup="dialog">
+  <span class="fab-flame" aria-hidden="true"></span><span data-i18n="hard">קשה לי</span>
+</button>
+
+<!-- Emergency mode -->
+<div class="emergency" id="emergency" role="dialog" aria-modal="true" aria-labelledby="em-title" hidden>
+  <div class="em-scroll">
+    <div class="em-head">
+      <h2 id="em-title"><span class="ember" data-i18n="em_title">מצב חירום: הגל הזה יעבור</span></h2>
+      <button class="icon-btn em-close" id="em-close" data-i18n-aria="em_close" aria-label="סגור מצב חירום"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <p class="em-say" data-i18n-html="em_say">תגיד בקול: <b>״זה דחף. הוא יעבור.״</b></p>
+    <div class="breath" aria-live="polite">
+      <div class="breath-circle" id="breath-circle"><span id="breath-label">שאיפה</span></div>
+      <p class="muted" data-i18n="breath_hint">נשימה איטית: 4 שניות שאיפה, 6 שניות נשיפה.</p>
+    </div>
+    <div class="timer card"><div class="card-inner">
+      <h3><span class="ember card-title" data-i18n="ten_rule">כלל 10 הדקות</span></h3>
+      <p data-i18n="ten_quote">״אני לא מחליט עכשיו. אני מחכה 10 דקות.״</p>
+      <div class="timer-ring">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" id="ring-fg" cx="60" cy="60" r="52"/></svg>
+        <output id="timer-out" aria-live="off">10:00</output>
+      </div>
+      <div class="timer-btns">
+        <button class="btn btn-ember" id="timer-start" data-i18n="t_start">התחל</button>
+        <button class="btn btn-ghost" id="timer-reset" data-i18n="t_reset">אפס</button>
+      </div>
+      <p class="timer-done" id="timer-done" data-i18n="t_done" hidden>עברו 10 דקות. כל הכבוד. הגל ירד? אם לא, עוד סבב. אתה חזק מזה.</p>
+    </div></div>
+    <div class="card"><div class="card-inner">
+      <h3><span class="ember card-title" data-i18n="steps">שלב אחר שלב</span></h3>
+      <div id="steps-host">{{STEPS_HE}}</div>
+    </div></div>
+    <div class="card"><div class="card-inner">
+      <h3 data-i18n="halt_title">בדיקת HALT: מה באמת חסר לי?</h3>
+      <ul class="halt-grid">
+        <li data-i18n-html="halt_h"><b>רעב?</b> לאכול משהו אמיתי</li>
+        <li data-i18n-html="halt_a"><b>כועס או לחוץ?</b> תנועה, לדבר, לכתוב</li>
+        <li data-i18n-html="halt_l"><b>בודד?</b> שיחה עם אדם אמיתי</li>
+        <li data-i18n-html="halt_t"><b>עייף?</b> ללכת לישון</li>
+      </ul>
+    </div></div>
+    <figure class="em-quote" id="em-quote"><blockquote></blockquote><figcaption></figcaption></figure>
+    <div class="em-actions">
+      <button class="btn btn-soft" id="em-another" data-i18n="em_another">עוד מילה של חיזוק</button>
+      <button class="btn btn-ember" id="em-done" data-i18n="em_done">עברתי את הגל 💪</button>
+    </div>
+  </div>
+</div>
+
+<!-- Kind reset flow -->
+<dialog class="sheet" id="reset-dialog" aria-labelledby="reset-title">
+  <form method="dialog" id="reset-form">
+    <h2 id="reset-title"><span class="ember" data-i18n="r_title">קמים. ״כי שבע יפול צדיק וקם״</span></h2>
+    <p data-i18n="r_intro">נפילה היא לא סוף הדרך. היא מידע. בוא נבין מה קרה ונתחיל את 24 השעות של האיפוס.</p>
+    <fieldset>
+      <legend data-i18n="r_what">מה היה שם? (אפשר לבחור כמה)</legend>
+      <div class="chips" id="trigger-chips"></div>
+    </fieldset>
+    <label class="field"><span data-i18n="r_moment">הרגע שבו עוד יכולתי לעצור:</span><textarea name="moment" rows="2"></textarea></label>
+    <label class="field"><span data-i18n="r_change">מה אני משנה בתוכנית מהיום:</span><textarea name="change" rows="2"></textarea></label>
+    <label class="field"><span data-i18n="r_kind">משפט חמלה לעצמי:</span><textarea name="kind" rows="2" data-i18n-ph="r_kind_ph" placeholder="למשל: אני לומד, ואני קם."></textarea></label>
+    <div class="sheet-btns">
+      <button class="btn btn-ember" value="save" data-i18n="r_save">שמור והתחל איפוס</button>
+      <button class="btn btn-ghost" value="cancel" formnovalidate data-i18n="r_cancel">לא עכשיו</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Share -->
+<dialog class="sheet" id="share-dialog" aria-labelledby="share-title">
+  <form method="dialog">
+    <h2 id="share-title"><span class="ember" data-i18n="sh_title">שתף את הרצף עם השותף שלך</span></h2>
+    <p class="muted small" data-i18n="sh_privacy">נשלח רק מספר הימים והקישור לאפליקציה. בלי טריגרים, בלי יומן, בלי שום פרט אישי.</p>
+    <blockquote class="share-preview" id="share-preview" dir="auto"></blockquote>
+    <div class="sheet-btns share-btns">
+      <button class="btn btn-ember" type="button" id="share-native" data-i18n="sh_native" hidden>שתף…</button>
+      <button class="btn btn-soft" type="button" id="share-copy" data-i18n="sh_copy">העתק הודעה</button>
+      <a class="btn btn-soft" id="share-wa" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-soft" id="share-tg" target="_blank" rel="noopener">Telegram</a>
+    </div>
+    <div class="sheet-btns"><button class="btn btn-ghost" value="close" data-i18n="close">סגור</button></div>
+  </form>
+</dialog>
+
+<!-- Settings / privacy -->
+<dialog class="sheet" id="settings-dialog" aria-labelledby="settings-title">
+  <form method="dialog">
+    <h2 id="settings-title" data-i18n="settings">הגדרות ופרטיות</h2>
+    <fieldset class="partner-card">
+      <legend data-i18n="p_title">שותף אחריות</legend>
+      <p class="muted small" data-i18n="p_note">אופציונלי. השם נשמר רק במכשיר שלך ולא נשלח לשום מקום.</p>
+      <label class="field"><span data-i18n="p_name">שם השותף:</span><input type="text" id="p-name" autocomplete="off" maxlength="40"></label>
+      <label class="switch"><input type="checkbox" id="p-weekly"><span data-i18n="p_weekly">להזכיר לי פעם בשבוע לשלוח לו עדכון</span></label>
+      <label class="field"><span data-i18n="p_day">ביום:</span><select id="p-day"></select></label>
+      <button class="btn btn-soft" type="button" data-open-share data-i18n="share">שתף רצף</button>
+    </fieldset>
+    <fieldset>
+      <legend data-i18n="rem_title">תזכורת ערב</legend>
+      <label class="switch"><input type="checkbox" id="rem-on"><span data-i18n="rem_on">להזכיר לי לעשות צ׳ק-אין</span></label>
+      <label class="field"><span data-i18n="rem_time">שעה:</span><input type="time" id="rem-time" value="21:30"></label>
+      <p class="muted small" data-i18n="rem_note">התזכורת מופיעה כשהאפליקציה פתוחה או פועלת ברקע בדפדפן (אין שרת ואין שליחת מידע). בחלק מהמכשירים צריך להתקין את האפליקציה למסך הבית.</p>
+    </fieldset>
+    <fieldset>
+      <legend data-i18n="data_title">הנתונים שלך</legend>
+      <p class="muted small" data-i18n="data_note">הכל נשמר רק במכשיר הזה (localStorage). שום דבר לא נשלח לשום מקום.</p>
+      <div class="sheet-btns">
+        <button class="btn btn-soft" type="button" id="export-btn" data-i18n="export">ייצוא גיבוי (JSON)</button>
+        <label class="btn btn-soft file-btn"><span data-i18n="import">ייבוא גיבוי</span><input type="file" id="import-file" accept="application/json" hidden></label>
+        <button class="btn btn-danger" type="button" id="wipe-btn" data-i18n="wipe">מחיקת כל הנתונים</button>
+      </div>
+    </fieldset>
+    <div class="sheet-btns"><button class="btn btn-ember" value="close" data-i18n="close">סגור</button></div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="js/i18n.js" defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>
